@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/*
+ * Colour tokens use the names from pristine_corporate_precision/DESIGN.md,
+ * so `bg-primary`, `text-on-surface-variant` etc. map 1:1 to the design system.
+ * Tailwind's default palette is switched off so only design colours are used.
+ */
+@theme {
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* Primary — Deep Oceanic Navy */
+  --color-primary: #0a2540;
+  --color-primary-hover: #071c33; /* "Navy-800" button hover */
+  --color-primary-fixed: #dbeafe;
+  --color-primary-fixed-dim: #bfdbfe;
+  --color-on-primary-fixed-variant: #1e3a5f;
+
+  /* Secondary — Emerald / Vitality Green */
+  --color-secondary: #0e9f6e;
+  --color-secondary-container: #d1fae5;
+  --color-on-secondary-container: #047857;
+
+  /* Tertiary — Crisp Cyan (interactive highlights, active states) */
+  --color-tertiary: #00c3f8;
+  --color-tertiary-fixed: #cffafe;
+  --color-on-tertiary-container: #0284c7;
+
+  /* Surfaces and text */
+  --color-surface: #ffffff;
+  --color-surface-container-low: #f8fafc;
+  --color-surface-container: #f1f5f9;
+  --color-surface-container-high: #e2e8f0;
+  --color-on-surface: #0f172a;
+  --color-on-surface-variant: #475569;
+  --color-outline: #64748b;
+  --color-outline-variant: #cbd5e1;
+  --color-control-border: #94a3b8; /* checkbox & radio border */
+
+  /* Functional */
+  --color-warning: #f59e0b;
+  --color-on-warning-container: #d97706;
+  --color-error: #ba1a1a;
+  --color-whatsapp: #25d366;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Elevation (DESIGN.md "Elevation & Depth") */
+  --shadow-card: 0 4px 20px -2px rgba(10, 37, 64, 0.05);
+  --shadow-pop: 0 12px 32px -4px rgba(10, 37, 64, 0.08);
+  --shadow-whatsapp: 0 12px 28px rgba(37, 211, 102, 0.38);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-up: fade-up 0.6s var(--ease-out-soft) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-surface font-sans text-on-surface antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-on-surface;
+  }
+  :focus-visible {
+    outline: 3px solid rgb(0 195 248 / 0.45); /* tertiary @ 45% */
+    outline-offset: 2px;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1280px;
+  padding-inline: 1rem;
+  @media (width >= 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  @apply font-display text-xs font-bold tracking-[0.08em] text-on-secondary-container uppercase;
+}
+
+@utility hero-atmosphere {
+  background:
+    radial-gradient(circle at 92% 8%, rgb(0 195 248 / 0.12), transparent 28%),
+    radial-gradient(circle at 8% 12%, rgb(14 159 110 / 0.09), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 82%);
+}
+
+@utility field {
+  @apply h-12 w-full rounded-xl border border-outline-variant bg-surface px-4 text-[15px] text-on-surface transition placeholder:text-outline focus:border-primary focus:ring-[3px] focus:ring-tertiary/20 focus:outline-none;
+}
+
+/* Sections fade up as they scroll into view (browsers with scroll-driven animations). */
+@utility reveal {
+  @supports (animation-timeline: view()) {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Page transitions (React <ViewTransition>, see components/page-transition.tsx)
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --duration-exit: 150ms;
+  --duration-enter: 260ms;
+  --duration-move: 420ms;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes vt-slide-y {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Route change: old page fades out quickly, new one fades and rises in. */
+::view-transition-old(.page) {
+  animation: var(--duration-exit) ease-in both vt-fade reverse;
+}
+::view-transition-new(.page) {
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both vt-fade,
+    var(--duration-move) var(--ease-out-soft) var(--duration-exit) both vt-slide-y;
+}
+
+/* Loading placeholder hands over to real content. */
+::view-transition-old(.skeleton-out) {
+  animation: var(--duration-exit) ease-out both vt-fade reverse;
+}
+::view-transition-new(.content-in) {
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both vt-fade,
+    var(--duration-move) var(--ease-out-soft) both vt-slide-y;
+}
+
+/* Keep the header still while pages change underneath it. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+  .reveal {
+    animation: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

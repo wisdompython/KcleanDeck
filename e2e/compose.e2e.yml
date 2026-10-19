@@ -1,0 +1,24 @@
+# Overlay for the end-to-end test stack. Used by `npm run stack:up` in e2e/:
+#
+#   docker compose -p kleandeck-e2e -f compose.yml -f e2e/compose.e2e.yml --env-file e2e/e2e.env up -d --build
+#
+# Runs on http://localhost:8089 with its own database, and a fake Paystack on :8099.
+
+services:
+  backend:
+    environment:
+      PAYSTACK_BASE_URL: http://fake-paystack:8099
+    depends_on:
+      fake-paystack:
+        condition: service_started
+
+  fake-paystack:
+    image: python:3.13-slim
+    command: ["python", "-u", "/app/server.py"]
+    environment:
+      PUBLIC_URL: http://localhost:8099
+      PAYSTACK_SECRET_KEY: ${PAYSTACK_SECRET_KEY}
+    volumes:
+      - ./e2e/fake-paystack:/app:ro  # paths resolve from the repo root
+    ports:
+      - "8099:8099"

@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+  :root {
+    --header-bg: #0A2540;
+    --header-color: #DBEAFE;
+    --header-branding-color: #FFFFFF;
+    --header-link-color: #FFFFFF;
+    --breadcrumbs-bg: #1E3A5F;
+    --breadcrumbs-link-fg: #BFDBFE;
+    --primary: #0A2540;
+    --secondary: #1E3A5F;
+    --accent: #00C3F8;
+    --button-bg: #0A2540;
+    --button-hover-bg: #071C33;
+    --default-button-bg: #0E9F6E;
+    --default-button-hover-bg: #047857;
+  }
+  #branding h1 { font-weight: 700; letter-spacing: -0.01em; }
+  #branding h1 a .sparkle { color: #00C3F8; }
+</style>
+{% endblock %}
+
+{% block branding %}
+<div id="site-name"><a href="{% url 'admin:index' %}">Kleandeck <span class="sparkle">✦</span> admin</a></div>
+{% if user.is_anonymous %}{% include "admin/color_theme_toggle.html" %}{% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

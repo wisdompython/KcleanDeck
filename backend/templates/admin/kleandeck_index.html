@@ -1,0 +1,75 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block extrastyle %}{{ block.super }}
+<style>
+  .kd-dash { margin-bottom: 28px; }
+  .kd-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .kd-stat { display: block; padding: 14px 16px; border: 1px solid var(--hairline-color); border-radius: 12px; background: var(--body-bg); text-decoration: none !important; }
+  .kd-stat:hover { border-color: #00C3F8; }
+  .kd-stat span { display: block; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--body-quiet-color); }
+  .kd-stat strong { display: block; margin-top: 6px; font-size: 24px; color: var(--body-fg); font-variant-numeric: tabular-nums; }
+  .kd-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .kd-actions a { padding: 8px 14px; border-radius: 999px; background: #0A2540; color: #fff !important; font-weight: 600; text-decoration: none; }
+  .kd-actions a.alt { background: #0E9F6E; }
+  .kd-dash table { width: 100%; }
+  .kd-dash h2 { margin: 18px 0 8px; font-size: 15px; }
+  .kd-none { color: var(--body-quiet-color); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="kd-dash">
+  <div class="kd-actions">
+    <a class="alt" href="{% url 'admin:bookings_booking_add' %}">+ New booking</a>
+    <a href="{% url 'admin:bookings_booking_changelist' %}">All bookings</a>
+    <a href="{% url 'admin:pricing_service_changelist' %}">Services &amp; rates</a>
+    <a href="{% url 'admin:bookings_cleaner_changelist' %}">Cleaners</a>
+    <a href="{% url 'admin:core_application_changelist' %}?status__exact=new">Applications ({{ new_applications }} new)</a>
+  </div>
+
+  <div class="kd-stats">
+    {% for label, value, query in stats %}
+      <a class="kd-stat" href="{% url 'admin:bookings_booking_changelist' %}{{ query }}"><span>{{ label }}</span><strong>{{ value }}</strong></a>
+    {% endfor %}
+  </div>
+
+  <h2>Upcoming jobs</h2>
+  {% if upcoming %}
+  <table>
+    <thead><tr><th>Date</th><th>Time</th><th>Customer</th><th>Service</th><th>Area</th><th>Team</th><th>Payment</th></tr></thead>
+    <tbody>
+    {% for b in upcoming %}
+      <tr>
+        <td>{{ b.scheduled_date|date:"D j M" }}</td>
+        <td>{{ b.time_slot_label|default:"—" }}</td>
+        <td><a href="{% url 'admin:bookings_booking_change' b.pk %}">{{ b.customer_name }}</a></td>
+        <td>{{ b.service.name }}</td>
+        <td>{{ b.area.name|default:"—" }}</td>
+        <td>{% for c in b.cleaners.all %}{{ c.full_name }}{% if not forloop.last %}, {% endif %}{% empty %}<strong style="color:#D97706">Not assigned</strong>{% endfor %}</td>
+        <td>{{ b.get_payment_status_display }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="kd-none">No confirmed jobs coming up.</p>{% endif %}
+
+  <h2>Open quote requests</h2>
+  {% if recent_quotes %}
+  <table>
+    <thead><tr><th>Received</th><th>Customer</th><th>Phone</th><th>Service</th></tr></thead>
+    <tbody>
+    {% for b in recent_quotes %}
+      <tr>
+        <td>{{ b.created_at|date:"j M, H:i" }}</td>
+        <td><a href="{% url 'admin:bookings_booking_change' b.pk %}">{{ b.customer_name }}</a></td>
+        <td>{{ b.phone }}</td>
+        <td>{{ b.service.name }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+  {% else %}<p class="kd-none">No open quote requests.</p>{% endif %}
+</div>
+{{ block.super }}
+{% endblock %}

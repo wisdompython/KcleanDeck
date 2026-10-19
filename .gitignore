@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python packaging and test artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Django local files
+*.sqlite3
+/staticfiles/
+/media/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node.js / frontend tooling
+node_modules/
+.npm/
+.pnpm-store/
+dist/
+build/
+.next/
+.nuxt/
+.output/
+.vite/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE metadata
+.idea/
+.vscode/
+
+# Django collectstatic output
+backend/staticfiles/
+stitch_kleandeck_commercial_cleaning_platform/
+Kleandeck_PRD_draft.docx

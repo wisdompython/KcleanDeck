@@ -1,0 +1,20 @@
+{
+  "name": "kleandeck-e2e",
+  "private": true,
+  "description": "End-to-end browser tests for the Kleandeck site and admin.",
+  "scripts": {
+    "stack:up": "docker compose -p kleandeck-e2e -f ../compose.yml -f compose.e2e.yml --env-file e2e.env up -d --build --wait",
+    "stack:down": "docker compose -p kleandeck-e2e -f ../compose.yml -f compose.e2e.yml --env-file e2e.env down -v",
+    "stack:logs": "docker compose -p kleandeck-e2e -f ../compose.yml -f compose.e2e.yml --env-file e2e.env logs --tail 100",
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "e2e": "npm run stack:down && npm run stack:up && npm test",
+    "typecheck": "tsc"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@types/node": "^26.6.4",
+    "typescript": "^5.9.3"
+  }
+}

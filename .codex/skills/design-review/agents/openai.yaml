@@ -1,0 +1,4 @@
+interface:
+  display_name: "Design Review"
+  short_description: "Audit and improve Kleandeck web interfaces"
+  default_prompt: "Use $design-review to audit and improve this interface while preserving the Kleandeck design system."
