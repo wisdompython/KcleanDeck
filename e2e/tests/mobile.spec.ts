@@ -8,7 +8,7 @@ test("mobile menu navigates the public site", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Open menu" }).click();
   await page.getByRole("navigation", { name: "Mobile" }).getByRole("link", { name: "Pricing" }).click();
-  await expect(page.getByRole("heading", { name: "Clear prices for Lagos workspaces" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Clear starting prices for core cleaning services" })).toBeVisible();
 });
 
 test("mobile booking shows the price summary inline", async ({ page }) => {
@@ -19,7 +19,7 @@ test("mobile booking shows the price summary inline", async ({ page }) => {
 });
 
 test("the page never scrolls sideways on a phone", async ({ page }) => {
-  for (const path of ["/", "/pricing", "/book", "/careers"]) {
+  for (const path of ["/", "/pricing", "/about", "/book", "/careers"]) {
     await page.goto(path);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow, path).toBeLessThanOrEqual(0);

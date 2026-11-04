@@ -12,6 +12,7 @@ import {
   Plus,
   Settings,
   ShieldCheck,
+  TicketPercent,
   Tags,
   UserRound,
   Users,
@@ -69,6 +70,7 @@ function useNav(): NavGroup[] {
       title: "Your services",
       items: [
         { href: "/admin/services", label: "Services & prices", hint: "What customers can book and how much it costs", icon: Tags },
+        { href: "/admin/discounts", label: "Discount codes", hint: "Create and manage promotional codes", icon: TicketPercent, ownerOnly: true },
         { href: "/admin/categories", label: "Homepage categories", hint: "The 'Who we work with' cards on the homepage", icon: LayoutGrid },
       ],
     },

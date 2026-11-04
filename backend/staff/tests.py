@@ -255,7 +255,7 @@ class SetupChecklistTests(AdminAPITestCase):
         data = client.get("/api/admin/setup/").json()
         steps = {s["key"]: s for s in data["steps"]}
         self.assertFalse(steps["whatsapp"]["done"])
-        self.assertFalse(steps["terms"]["done"])  # seeded terms are a draft
+        self.assertTrue(steps["terms"]["done"])  # seeded terms include the confirmed refund policy
         self.assertTrue(steps["team"]["done"])  # owner + staff exist in setUp
         before = data["done"]
 

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import transaction
 from rest_framework import serializers
 
-from bookings.models import Booking, Cleaner, Payment
+from bookings.models import Booking, Cleaner, DiscountCode, Payment
 from bookings.pricing import quote_for
 from core.models import FAQ, Application, SiteSettings
 from pricing.engine import PricingError
@@ -59,13 +59,14 @@ class BookingDetailSerializer(BookingListSerializer):
     service_pricing_method = serializers.CharField(source="service.pricing_method")
     payments = PaymentSerializer(many=True)
     created_by_name = serializers.SerializerMethodField()
+    discount_code = serializers.CharField(source="discount_code.code", default=None, read_only=True)
 
     class Meta(BookingListSerializer.Meta):
         fields = BookingListSerializer.Meta.fields + [
             "service", "service_pricing_method", "frequency", "area", "inputs", "pricing_mode", "price_breakdown",
             "subtotal", "vat_exempt", "vat_rate", "vat_amount", "address", "site_notes", "terms_accepted_at",
             "payment_method", "paid_at", "payment_link", "internal_notes", "payments", "created_by_name",
-            "updated_at",
+            "discount_code", "discount_amount", "updated_at",
         ]
 
     def get_created_by_name(self, obj):
@@ -168,6 +169,57 @@ class CleanerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cleaner
         fields = ["id", "full_name", "phone", "role", "is_active", "notes", "joined_on", "upcoming_jobs", "completed_jobs"]
+
+
+class DiscountCodeSerializer(serializers.ModelSerializer):
+    code = serializers.CharField(max_length=32)
+    services = serializers.PrimaryKeyRelatedField(queryset=Service.objects.all(), many=True, required=False)
+    redemption_count = serializers.IntegerField(read_only=True)
+
+    class Meta:
+        model = DiscountCode
+        fields = [
+            "id", "code", "name", "kind", "value", "minimum_subtotal", "maximum_discount",
+            "usage_limit", "services", "starts_at", "expires_at", "is_active", "redemption_count",
+            "created_at", "updated_at",
+        ]
+        read_only_fields = ["created_at", "updated_at"]
+        extra_kwargs = {
+            "value": {"min_value": 1},
+            "usage_limit": {"min_value": 1},
+            "minimum_subtotal": {"min_value": 0},
+            "maximum_discount": {"min_value": 1},
+        }
+
+    def validate_code(self, value):
+        import re
+
+        code = value.strip().upper()
+        if len(code) < 4:
+            raise serializers.ValidationError("Use at least 4 characters.")
+        if not re.fullmatch(r"[A-Z0-9_-]+", code):
+            raise serializers.ValidationError("Use letters, numbers, hyphens or underscores only.")
+        existing = DiscountCode.objects.filter(code=code)
+        if self.instance:
+            existing = existing.exclude(pk=self.instance.pk)
+        if existing.exists():
+            raise serializers.ValidationError("That code already exists.")
+        return code
+
+    def validate(self, attrs):
+        current = self.instance
+        kind = attrs.get("kind", getattr(current, "kind", DiscountCode.Kind.PERCENTAGE))
+        value = attrs.get("value", getattr(current, "value", 0))
+        maximum = attrs.get("maximum_discount", getattr(current, "maximum_discount", None))
+        starts = attrs.get("starts_at", getattr(current, "starts_at", None))
+        expires = attrs.get("expires_at", getattr(current, "expires_at", None))
+        if kind == DiscountCode.Kind.PERCENTAGE and value > 90:
+            raise serializers.ValidationError({"value": "Percentage discounts must be 90% or less."})
+        if kind == DiscountCode.Kind.FIXED and maximum is not None:
+            raise serializers.ValidationError({"maximum_discount": "A cap only applies to percentage discounts."})
+        if starts and expires and expires <= starts:
+            raise serializers.ValidationError({"expires_at": "Expiry must be after the start date."})
+        return attrs
 
 
 class ApplicationSerializer(serializers.ModelSerializer):

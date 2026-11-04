@@ -1,0 +1,380 @@
+[
+  {
+    "width": 390,
+    "deviceScaleFactor": 2,
+    "heroChoices": 4,
+    "overflow": false,
+    "errors": [],
+    "images": [
+      {
+        "alt": "Cleaning for corporate offices",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1200&q=90",
+        "width": 303,
+        "height": 220,
+        "sizes": "(min-width: 768px) 540px, 410px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1200&q=90",
+        "width": 358,
+        "height": 320,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fshortlets.24yf2cq-m9t8i.jpg&w=1200&q=90",
+        "width": 358,
+        "height": 320,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Freal-estate.3kzzuz-tmjwt1.jpg&w=1200&q=90",
+        "width": 358,
+        "height": 320,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior-decor.00xpomfw3ud2x.jpg&w=1200&q=90",
+        "width": 358,
+        "height": 320,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A bright office with clear glass partitions and a freshly cleaned floor",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=828&q=90",
+        "width": 358,
+        "height": 311,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcleaning-before.2gwcin10uohea.webp&w=828&q=90",
+        "width": 358,
+        "height": 311,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1080&q=90",
+        "width": 356,
+        "height": 250,
+        "sizes": "(min-width: 1280px) 560px, (min-width: 768px) 465px, (min-width: 640px) calc(100vw - 32px), 445px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdeep.3cw-sor6o_n9v.jpg&w=384&q=90",
+        "width": 80,
+        "height": 175,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=384&q=90",
+        "width": 80,
+        "height": 157,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpost-construction.05c_ssqcm5b30.jpg&w=384&q=90",
+        "width": 80,
+        "height": 157,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffacility.059ae2m9br4jm.jpg&w=384&q=90",
+        "width": 80,
+        "height": 129,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A Kleandeck team carefully cleaning a meeting room",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1200&q=90",
+        "width": 358,
+        "height": 247,
+        "sizes": "(min-width: 1280px) 900px, (min-width: 768px) 70vw, 150vw",
+        "transform": "none",
+        "complete": true
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "deviceScaleFactor": 2,
+    "heroChoices": 4,
+    "overflow": false,
+    "errors": [],
+    "images": [
+      {
+        "alt": "Cleaning for corporate offices",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1920&q=90",
+        "width": 296,
+        "height": 278,
+        "sizes": "(min-width: 768px) 540px, 410px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1920&q=90",
+        "width": 402,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fshortlets.24yf2cq-m9t8i.jpg&w=1920&q=90",
+        "width": 282,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Freal-estate.3kzzuz-tmjwt1.jpg&w=1920&q=90",
+        "width": 282,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior-decor.00xpomfw3ud2x.jpg&w=1920&q=90",
+        "width": 402,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A bright office with clear glass partitions and a freshly cleaned floor",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=1920&q=90",
+        "width": 704,
+        "height": 385,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcleaning-before.2gwcin10uohea.webp&w=1920&q=90",
+        "width": 704,
+        "height": 385,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1080&q=90",
+        "width": 322,
+        "height": 503,
+        "sizes": "(min-width: 1280px) 560px, (min-width: 768px) 465px, (min-width: 640px) calc(100vw - 32px), 445px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdeep.3cw-sor6o_n9v.jpg&w=640&q=90",
+        "width": 72,
+        "height": 173,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=640&q=90",
+        "width": 72,
+        "height": 155,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpost-construction.05c_ssqcm5b30.jpg&w=640&q=90",
+        "width": 72,
+        "height": 155,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffacility.059ae2m9br4jm.jpg&w=640&q=90",
+        "width": 72,
+        "height": 129,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A Kleandeck team carefully cleaning a meeting room",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1080&q=90",
+        "width": 315,
+        "height": 252,
+        "sizes": "(min-width: 1280px) 900px, (min-width: 768px) 70vw, 150vw",
+        "transform": "none",
+        "complete": true
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "deviceScaleFactor": 2,
+    "heroChoices": 4,
+    "overflow": false,
+    "errors": [],
+    "images": [
+      {
+        "alt": "Cleaning for corporate offices",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1920&q=90",
+        "width": 490,
+        "height": 292,
+        "sizes": "(min-width: 768px) 540px, 410px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Foffices.3a3-o1g1acvyn.jpg&w=1920&q=90",
+        "width": 701,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fshortlets.24yf2cq-m9t8i.jpg&w=1920&q=90",
+        "width": 495,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Freal-estate.3kzzuz-tmjwt1.jpg&w=1920&q=90",
+        "width": 495,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Finterior-decor.00xpomfw3ud2x.jpg&w=1920&q=90",
+        "width": 701,
+        "height": 340,
+        "sizes": "(min-width: 1280px) 701px, (min-width: 768px) 624px, (min-width: 640px) calc(100vw - 32px), 586px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A bright office with clear glass partitions and a freshly cleaned floor",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=3840&q=90",
+        "width": 1216,
+        "height": 664,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcleaning-before.2gwcin10uohea.webp&w=3840&q=90",
+        "width": 1216,
+        "height": 664,
+        "sizes": "(min-width: 1280px) 1216px, 100vw",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1200&q=90",
+        "width": 558,
+        "height": 388,
+        "sizes": "(min-width: 1280px) 560px, (min-width: 768px) 465px, (min-width: 640px) calc(100vw - 32px), 445px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdeep.3cw-sor6o_n9v.jpg&w=640&q=90",
+        "width": 96,
+        "height": 130,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fmove.3e_ibgsfuq0nd.jpg&w=640&q=90",
+        "width": 96,
+        "height": 112,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fpost-construction.05c_ssqcm5b30.jpg&w=640&q=90",
+        "width": 96,
+        "height": 112,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ffacility.059ae2m9br4jm.jpg&w=640&q=90",
+        "width": 96,
+        "height": 112,
+        "sizes": "(min-width: 768px) 210px, 190px",
+        "transform": "none",
+        "complete": true
+      },
+      {
+        "alt": "A Kleandeck team carefully cleaning a meeting room",
+        "source": "http://127.0.0.1:3020/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fstandard.0kmy_kqkyfo_q.jpg&w=1920&q=90",
+        "width": 618,
+        "height": 494,
+        "sizes": "(min-width: 1280px) 900px, (min-width: 768px) 70vw, 150vw",
+        "transform": "none",
+        "complete": true
+      }
+    ]
+  }
+]

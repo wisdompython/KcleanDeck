@@ -6,7 +6,13 @@ import { useState } from "react";
 
 import { btn } from "@/components/ui";
 
-export function MobileNav({ links }: { links: { href: string; label: string }[] }) {
+export function MobileNav({
+  links,
+  joinLinks,
+}: {
+  links: { href: string; label: string }[];
+  joinLinks: { href: string; label: string; description: string }[];
+}) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
 
@@ -34,9 +40,23 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
                 {link.label}
               </Link>
             ))}
+            <p className="pt-4 pb-1 font-display text-[11px] font-bold tracking-[0.08em] text-outline uppercase">
+              Join Kleandeck
+            </p>
+            {joinLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={close}
+                className="border-b border-surface-container py-3 pl-3 font-display text-sm font-semibold text-on-surface"
+              >
+                {link.label}
+                <span className="mt-0.5 block font-sans text-xs font-normal text-on-surface-variant">{link.description}</span>
+              </Link>
+            ))}
           </nav>
           <Link href="/book" onClick={close} className={`${btn.primary} mt-5 w-full`}>
-            Book a clean
+            Book a service
           </Link>
         </div>
       )}

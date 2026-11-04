@@ -135,6 +135,7 @@ class QuoteInputSerializer(serializers.Serializer):
     quantities = serializers.DictField(child=serializers.IntegerField(min_value=0), required=False, default=dict)
     area_sqm = serializers.IntegerField(min_value=1, required=False, allow_null=True)
     addon_ids = serializers.ListField(child=serializers.IntegerField(), required=False, default=list)
+    discount_code = serializers.CharField(max_length=32, required=False, allow_blank=True, default="")
 
     def validate_quantities(self, value):
         try:
@@ -153,11 +154,24 @@ class QuoteInputSerializer(serializers.Serializer):
             addon_ids=d.get("addon_ids", []),
         )
 
-    def calculate(self):
+    def calculate(self, *, lock_discount: bool = False):
         try:
-            return calculate(self.to_quote_request())
+            quote = calculate(self.to_quote_request())
         except PricingError as exc:
             raise serializers.ValidationError({"detail": str(exc)}) from exc
+
+        code = self.validated_data.get("discount_code", "")
+        self.applied_discount = None
+        if code and not quote.requires_quote:
+            from bookings.discounts import DiscountCodeError, apply_discount_code
+
+            try:
+                self.applied_discount = apply_discount_code(
+                    quote, self.validated_data["service"], code, lock=lock_discount
+                )
+            except DiscountCodeError as exc:
+                raise serializers.ValidationError({"discount_code": str(exc)}) from exc
+        return quote
 
     def inputs_json(self) -> dict:
         d = self.validated_data

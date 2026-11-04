@@ -2,9 +2,9 @@ export function naira(amount: number): string {
   return `₦${Math.round(amount).toLocaleString("en-NG")}`;
 }
 
-/** wa.me click-to-chat link. Falls back to the FAQ page until a number is set in the admin. */
+/** wa.me click-to-chat link. Falls back to the contact section until a number is set in the admin. */
 export function whatsappLink(number: string | undefined, text: string): string {
-  if (!number) return "/faq#contact";
+  if (!number) return "/#contact";
   return `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
 }
 

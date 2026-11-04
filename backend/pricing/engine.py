@@ -44,6 +44,9 @@ class Quote:
     total: int
     requires_quote: bool
     quote_reason: str = ""
+    discount_code: str = ""
+    code_discount_amount: int = 0
+    subtotal_before_code: int = 0
 
     def as_dict(self) -> dict:
         data = asdict(self)

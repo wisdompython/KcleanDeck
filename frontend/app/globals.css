@@ -47,7 +47,7 @@
   --color-whatsapp: #25d366;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
 
   /* Elevation (DESIGN.md "Elevation & Depth") */
   --shadow-card: 0 4px 20px -2px rgba(10, 37, 64, 0.05);

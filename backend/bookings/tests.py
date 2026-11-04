@@ -11,7 +11,7 @@ from django.test import TestCase, override_settings
 from django.utils import timezone
 from rest_framework.test import APIClient
 
-from bookings.models import Booking, Payment
+from bookings.models import Booking, DiscountCode, Payment
 from core.models import SiteSettings
 from pricing.models import Service
 
@@ -65,6 +65,53 @@ class BookingFlowTests(TestCase):
         body = res.json()
         self.assertEqual(body["vat_rate"], "7.50")
         self.assertEqual(body["total"], body["subtotal"] + body["vat_amount"])
+
+    def test_discount_code_is_applied_before_vat(self):
+        DiscountCode.objects.create(code="WELCOME10", name="Welcome", kind="percentage", value=10)
+        original = self.client.post("/api/quote/", self.booking_payload(), format="json").json()
+        res = self.client.post(
+            "/api/quote/", self.booking_payload(discount_code="welcome10"), format="json"
+        )
+        self.assertEqual(res.status_code, 200, res.content)
+        body = res.json()
+        self.assertEqual(body["discount_code"], "WELCOME10")
+        self.assertEqual(body["subtotal_before_code"], original["subtotal"])
+        self.assertEqual(body["subtotal"], original["subtotal"] - body["code_discount_amount"])
+        self.assertEqual(body["total"], body["subtotal"] + body["vat_amount"])
+
+    def test_invalid_discount_code_has_clear_field_error(self):
+        res = self.client.post(
+            "/api/quote/", self.booking_payload(discount_code="NOTREAL"), format="json"
+        )
+        self.assertEqual(res.status_code, 400)
+        self.assertIn("discount_code", res.json())
+
+    def test_discount_is_frozen_on_booking_and_used_for_payment(self):
+        code = DiscountCode.objects.create(code="CLIENT15", name="Client offer", kind="percentage", value=15)
+        sent = []
+        with mock.patch("bookings.paystack.requests.post", side_effect=fake_initialize_response(sent)):
+            res = self.client.post(
+                "/api/bookings/", self.booking_payload(discount_code=code.code), format="json"
+            )
+        self.assertEqual(res.status_code, 201, res.content)
+        booking = Booking.objects.get(reference=res.json()["reference"])
+        self.assertEqual(booking.discount_code, code)
+        self.assertGreater(booking.discount_amount, 0)
+        self.assertEqual(sent[0]["amount"], booking.deposit_amount * 100 if booking.deposit_amount else booking.total * 100)
+
+    def test_limited_code_cannot_be_reused(self):
+        code = DiscountCode.objects.create(code="ONCEONLY", name="One use", kind="fixed", value=5000, usage_limit=1)
+        sent = []
+        with mock.patch("bookings.paystack.requests.post", side_effect=fake_initialize_response(sent)):
+            first = self.client.post(
+                "/api/bookings/", self.booking_payload(discount_code=code.code), format="json"
+            )
+        self.assertEqual(first.status_code, 201, first.content)
+        second = self.client.post(
+            "/api/quote/", self.booking_payload(discount_code=code.code), format="json"
+        )
+        self.assertEqual(second.status_code, 400)
+        self.assertIn("usage limit", str(second.json()["discount_code"]).lower())
 
     def test_create_booking_starts_paystack_checkout(self):
         sent = []
@@ -245,3 +292,23 @@ class AdminSmokeTests(TestCase):
         self.assertEqual(res.status_code, 302, res.content.decode()[:3000])
         # 20,000 + 100 m² × 1,500 = 170,000 + 7.5% VAT
         self.assertEqual(Booking.objects.get().total, 182750)
+
+    def test_owner_can_generate_discount_code(self):
+        payload = {
+            "code": "KLEAN-TEST24",
+            "name": "Launch campaign",
+            "kind": "percentage",
+            "value": 10,
+            "minimum_subtotal": 25000,
+            "maximum_discount": 15000,
+            "usage_limit": 25,
+            "services": [Service.objects.get(slug="standard-cleaning").pk],
+            "is_active": True,
+        }
+        res = self.client.post(
+            "/api/admin/discount-codes/", json.dumps(payload), content_type="application/json"
+        )
+        self.assertEqual(res.status_code, 201, res.content)
+        saved = DiscountCode.objects.get()
+        self.assertEqual(saved.code, "KLEAN-TEST24")
+        self.assertEqual(saved.services.count(), 1)

@@ -1,33 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
+import { ChevronDown } from "lucide-react";
 
-import { WhatsAppIcon } from "@/components/icons";
 import { MobileNav } from "@/components/mobile-nav";
 import { btn } from "@/components/ui";
-import { getSite } from "@/lib/api";
-import { whatsappLink } from "@/lib/format";
 
 const navLinks = [
   { href: "/#services", label: "Services" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/careers", label: "Careers" },
-  { href: "/academy", label: "Academy" },
+  { href: "/about", label: "About us" },
 ];
 
-async function HeaderWhatsApp() {
-  const site = await getSite().catch(() => null);
-  return (
-    <a
-      href={whatsappLink(site?.whatsapp_number, "Hello Kleandeck, I'd like to ask about a cleaning job.")}
-      className="hidden h-10 items-center gap-2 rounded-full border border-surface-container-high px-4 text-sm font-semibold text-on-surface transition hover:bg-surface-container-low lg:inline-flex"
-    >
-      <WhatsAppIcon className="size-4 text-whatsapp" />
-      Chat on WhatsApp
-    </a>
-  );
-}
+const joinLinks = [
+  { href: "/careers", label: "Careers", description: "Join our cleaning and support team" },
+  { href: "/academy", label: "Academy", description: "Screening and practical training" },
+];
 
 export function SiteHeader() {
   return (
@@ -47,16 +34,26 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <details className="group relative">
+            <summary className="flex cursor-pointer list-none items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-on-surface-variant transition hover:bg-white hover:text-on-surface [&::-webkit-details-marker]:hidden">
+              Join Kleandeck <ChevronDown className="size-3.5 transition group-open:rotate-180" aria-hidden="true" />
+            </summary>
+            <div className="absolute top-[calc(100%+0.75rem)] right-0 w-64 rounded-2xl border border-surface-container-high bg-white p-2 shadow-pop">
+              {joinLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="block rounded-xl px-3 py-2.5 transition hover:bg-surface-container-low">
+                  <span className="block font-display text-sm font-semibold text-on-surface">{link.label}</span>
+                  <span className="mt-0.5 block text-xs text-on-surface-variant">{link.description}</span>
+                </Link>
+              ))}
+            </div>
+          </details>
         </nav>
 
         <div className="flex items-center gap-2">
-          <Suspense fallback={null}>
-            <HeaderWhatsApp />
-          </Suspense>
           <Link href="/book" className={`${btn.primary} hidden h-10 px-5 text-sm sm:inline-flex`}>
-            Book a clean
+            Book a service
           </Link>
-          <MobileNav links={navLinks} />
+          <MobileNav links={navLinks} joinLinks={joinLinks} />
         </div>
       </div>
     </header>

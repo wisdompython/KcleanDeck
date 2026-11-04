@@ -1,0 +1,64 @@
+{
+  "results": [
+    {
+      "name": "new flat service created with category and price",
+      "status": "passed",
+      "detail": {
+        "id": 7,
+        "categories": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "new service public calculator and staff booking",
+      "status": "passed",
+      "detail": {
+        "bookingRef": "KD-R46AYKX"
+      }
+    },
+    {
+      "name": "discount create validation then save",
+      "status": "passed",
+      "detail": {
+        "code": "AUDIT10"
+      }
+    },
+    {
+      "name": "discount public apply remove and invalid recovery",
+      "status": "failed",
+      "message": "expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+    },
+    {
+      "name": "cleaner create edit inactive search",
+      "status": "failed",
+      "message": "locator.click: Error: strict mode violation: locator('article').filter({ hasText: 'Audit Ada Cleaner' }).getByRole('button', { name: 'Edit' }) resolved to 2 elements:\n    1) <button type=\"button\" class=\"inline-flex items-center justify-center gap-2 rounded-xl font-display font-semibold transition hover:-translate-y-px disabled:pointer-events-none disabled:opacity-50 bg-surface-container text-on-surface hover:bg-surface-container-high h-9 px-3.5 text-[13px] ml-auto\">Edit</button> aka getByRole('button', { name: 'Edit' }).first()\n    2) <button type=\"button\" class=\"inline-flex items-center justify-center gap-2 rounded-xl font-display font-semibold transition hover:-translate-y-px disabled:pointer-events-none disabled:opacity-50 bg-surface-container text-on-surface hover:bg-surface-container-high h-9 px-3.5 text-[13px] ml-auto\">Edit</button> aka getByRole('button', { name: 'Edit' }).nth(1)\n\nCall log:\n\u001b[2m  - waiting for locator('article').filter({ hasText: 'Audit Ada Cleaner' }).getByRole('button', { name: 'Edit' })\u001b[22m\n"
+    },
+    {
+      "name": "hidden service booking contact-only edit",
+      "status": "passed",
+      "detail": {
+        "bookingRef": "KD-R46AYKX"
+      }
+    },
+    {
+      "name": "account mismatched and wrong-current-password errors",
+      "status": "failed",
+      "message": "expect(locator).toContainText(expected) failed\n\nLocator: getByRole('alert')\nExpected substring: \"don't match\"\nError: strict mode violation: getByRole('alert') resolved to 2 elements:\n    1) <p role=\"alert\" class=\"rounded-xl bg-error/10 px-4 py-3 text-sm text-error\">The new passwords don't match.</p> aka getByText('The new passwords don\\'t match.')\n    2) <div role=\"alert\" aria-live=\"assertive\" id=\"__next-route-announcer__\"></div> aka locator('[id=\"__next-route-announcer__\"]')\n\nCall log:\n  - Expect \"toContainText\" getByRole('alert') with timeout 5000ms\n  - waiting for getByRole('alert')\n"
+    }
+  ],
+  "observations": [
+    {
+      "name": "invalidCodeRecovery",
+      "error": [
+        ""
+      ],
+      "remove": 0,
+      "applyDisabled": true,
+      "continueDisabled": true
+    },
+    {
+      "dialog": ""
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "workflowSummary": {
+    "passed": 6,
+    "failed": 1
+  },
+  "workflows": [
+    {
+      "name": "new flat service created with category and price",
+      "status": "passed",
+      "detail": {
+        "id": 7,
+        "categories": [
+          1
+        ]
+      }
+    },
+    {
+      "name": "new service public calculator and staff booking",
+      "status": "passed",
+      "detail": {
+        "bookingRef": "KD-R46AYKX"
+      }
+    },
+    {
+      "name": "discount create validation then save",
+      "status": "passed",
+      "detail": {
+        "code": "AUDIT10"
+      }
+    },
+    {
+      "name": "discount public apply remove and invalid recovery",
+      "status": "failed",
+      "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+    },
+    {
+      "name": "cleaner create edit inactive search",
+      "status": "passed",
+      "detail": {
+        "name": "Audit Ada Recheck mvf651c6",
+        "inactive": true
+      }
+    },
+    {
+      "name": "hidden service booking contact-only edit",
+      "status": "passed",
+      "detail": {
+        "bookingRef": "KD-R46AYKX"
+      }
+    },
+    {
+      "name": "account mismatched and wrong-current-password errors",
+      "status": "passed",
+      "detail": {
+        "wrongCurrentPasswordError": "That isn't your current password."
+      }
+    }
+  ],
+  "edgeSummary": {
+    "failed": 4
+  },
+  "edgeClassifications": {
+    "observed_defect": 3,
+    "inconclusive": 1
+  },
+  "edges": [
+    {
+      "name": "contact-only edit preserves discounted price",
+      "status": "failed",
+      "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: 19350\nReceived: 21500",
+      "classification": "observed_defect"
+    },
+    {
+      "name": "hidden per-unit service contact edit preserves quantities and price",
+      "status": "failed",
+      "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: 62350\nReceived: 40850",
+      "classification": "observed_defect"
+    },
+    {
+      "name": "hidden-service booking edit retains visible price context",
+      "status": "failed",
+      "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false",
+      "classification": "observed_defect"
+    },
+    {
+      "name": "zero-price new service requires publication validation",
+      "status": "failed",
+      "error": "expect(locator).toBeVisible() failed\n\nLocator: getByText('Service created')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Service created') with timeout 5000ms\n  - waiting for getByText('Service created')\n",
+      "classification": "inconclusive"
+    }
+  ],
+  "notes": "Workflow rechecks replace ambiguous audit selectors/duplicate-fixture failures; original raw results are retained in browser-all.json. Failed desired-behavior assertions expose observed defects and are not passing regression tests. The zero-price assertion failed at a toast wait and is inconclusive, not a confirmed product bug."
+}

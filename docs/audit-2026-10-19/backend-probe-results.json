@@ -1,0 +1,97 @@
+[
+  {
+    "case": "raise price after full payment",
+    "http": 200,
+    "actual": {
+      "total": 20000,
+      "amount_paid": 10000,
+      "balance_due": 10000,
+      "payment_status": "paid"
+    },
+    "expected": "part_paid with a 10000 balance"
+  },
+  {
+    "case": "edit discounted booking contact",
+    "http": 200,
+    "total_before": 9000,
+    "actual": {
+      "total": 10000,
+      "discount_code": "AUDIT10",
+      "discount_amount": 0
+    },
+    "expected": "unchanged total 9000 and retained 1000 discount"
+  },
+  {
+    "case": "concurrent offline payment interleaving",
+    "actual": {
+      "amount_paid": 6000,
+      "payment_ledger_sum": 10000,
+      "balance_due": 4000
+    },
+    "expected": "amount_paid equals ledger sum 10000 and balance_due is 0"
+  },
+  {
+    "case": "hire applicant twice",
+    "http": [
+      200,
+      200
+    ],
+    "duplicate_cleaners": 2,
+    "expected": "one linked cleaner"
+  },
+  {
+    "case": "applications page limit",
+    "http": 200,
+    "count": 106,
+    "returned": 100,
+    "has_next": true,
+    "expected": "UI exposes next page / load more"
+  },
+  {
+    "case": "deactivate only allowed arrival slot",
+    "actual": [
+      "audit-afternoon"
+    ],
+    "expected": "no slots or configuration warning; unrelated afternoon should not be enabled"
+  },
+  {
+    "case": "deactivate only allowed frequency",
+    "actual": [
+      "audit-weekly"
+    ],
+    "expected": "no frequency or configuration warning; unrelated weekly must not be enabled"
+  },
+  {
+    "case": "delete slot used by booking then edit",
+    "http": [
+      204,
+      400
+    ],
+    "actual": {
+      "time_slot": [
+        "Choose one of the time slots in Settings."
+      ]
+    },
+    "expected": "preserve historical slot or prevent unsafe deletion"
+  },
+  {
+    "case": "partial nested unit update",
+    "http": 500,
+    "expected": "200 update or useful 400, never 500"
+  },
+  {
+    "case": "malformed calculator inputs",
+    "http": 400,
+    "expected": "400 field validation, never 500"
+  },
+  {
+    "case": "dashboard counts with two assigned cleaners",
+    "http": 200,
+    "actual": {
+      "today_count": 2,
+      "today_bookings": 1,
+      "cleaners_on_job": 2
+    },
+    "expected": "today_count equals 1 distinct booking"
+  }
+]

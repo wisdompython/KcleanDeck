@@ -16,7 +16,7 @@ from rest_framework.throttling import ScopedRateThrottle
 from rest_framework.views import APIView
 
 from bookings import paystack
-from bookings.models import Booking, Cleaner, Payment
+from bookings.models import Booking, Cleaner, DiscountCode, Payment
 from core.images import ImageError, clear_photo, copy_photo, replace_photo
 from core.models import FAQ, Application, SiteSettings
 from pricing.engine import PricingError, QuoteRequest, calculate
@@ -346,6 +346,14 @@ class OwnerEditableViewSet(TeamAPIMixin, viewsets.ModelViewSet):
                 {"detail": "This is used by existing bookings. Turn it off instead of deleting it."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class DiscountCodeViewSet(OwnerEditableViewSet):
+    permission_classes = [IsOwner]
+    serializer_class = s.DiscountCodeSerializer
+
+    def get_queryset(self):
+        return DiscountCode.objects.prefetch_related("services")
 
 
 class PhotoActionsMixin:

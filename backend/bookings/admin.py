@@ -4,7 +4,7 @@ from django.utils import timezone
 from django.utils.html import format_html, format_html_join
 
 from bookings import paystack
-from bookings.models import Booking, Cleaner, Payment
+from bookings.models import Booking, Cleaner, DiscountCode, Payment
 from bookings.pricing import quote_for
 from pricing.engine import PricingError
 from pricing.models import Service
@@ -62,7 +62,7 @@ class BookingAdmin(admin.ModelAdmin):
     readonly_fields = [
         "reference", "source", "vat_rate", "vat_amount", "total", "breakdown_display", "unit_ids_help",
         "payment_link_display", "terms_accepted_at", "site_requirements_confirmed", "created_by", "created_at",
-        "updated_at",
+        "discount_code", "discount_amount", "updated_at",
     ]
     fieldsets = [
         (None, {"fields": [("reference", "source"), "status"]}),
@@ -80,7 +80,7 @@ class BookingAdmin(admin.ModelAdmin):
                 ),
                 "fields": [
                     "pricing_mode", "subtotal", "vat_exempt", ("vat_rate", "vat_amount", "total"),
-                    "inputs", "unit_ids_help", "breakdown_display",
+                    ("discount_code", "discount_amount"), "inputs", "unit_ids_help", "breakdown_display",
                 ],
             },
         ),
@@ -251,3 +251,15 @@ class PaymentAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return False
+
+
+@admin.register(DiscountCode)
+class DiscountCodeAdmin(admin.ModelAdmin):
+    list_display = ["code", "name", "kind", "value", "redemptions", "usage_limit", "expires_at", "is_active"]
+    list_filter = ["is_active", "kind"]
+    search_fields = ["code", "name"]
+    filter_horizontal = ["services"]
+
+    @admin.display(description="Uses")
+    def redemptions(self, obj):
+        return obj.redemption_count

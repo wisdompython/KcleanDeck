@@ -1,4 +1,5 @@
 import secrets
+from decimal import ROUND_HALF_UP, Decimal
 
 from django.conf import settings
 from django.db import models
@@ -11,6 +12,70 @@ REFERENCE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # no 0/O/1/I
 
 def generate_reference() -> str:
     return "KD-" + "".join(secrets.choice(REFERENCE_ALPHABET) for _ in range(7))
+
+
+class DiscountCode(models.Model):
+    class Kind(models.TextChoices):
+        PERCENTAGE = "percentage", "Percentage off"
+        FIXED = "fixed", "Fixed amount off"
+
+    code = models.CharField(max_length=32, unique=True)
+    name = models.CharField(max_length=120, blank=True, help_text="Internal campaign name, e.g. New customer offer")
+    kind = models.CharField(max_length=12, choices=Kind.choices, default=Kind.PERCENTAGE)
+    value = models.PositiveIntegerField(help_text="Whole percent or Naira, depending on the discount type")
+    minimum_subtotal = models.PositiveIntegerField(default=0, help_text="Minimum booking subtotal before VAT")
+    maximum_discount = models.PositiveIntegerField(
+        null=True, blank=True, help_text="Optional Naira cap for percentage discounts"
+    )
+    usage_limit = models.PositiveIntegerField(null=True, blank=True, help_text="Blank means unlimited")
+    services = models.ManyToManyField(Service, blank=True, related_name="discount_codes")
+    starts_at = models.DateTimeField(null=True, blank=True)
+    expires_at = models.DateTimeField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self) -> str:
+        return self.code
+
+    def save(self, *args, **kwargs):
+        self.code = self.code.strip().upper()
+        super().save(*args, **kwargs)
+
+    @property
+    def redemption_count(self) -> int:
+        return self.bookings.exclude(status=Booking.Status.CANCELLED).count()
+
+    def usability_error(self, service: Service, subtotal: int, *, now=None) -> str | None:
+        now = now or timezone.now()
+        if not self.is_active:
+            return "This discount code is no longer active."
+        if self.starts_at and now < self.starts_at:
+            return "This discount code is not active yet."
+        if self.expires_at and now >= self.expires_at:
+            return "This discount code has expired."
+        if self.usage_limit and self.redemption_count >= self.usage_limit:
+            return "This discount code has reached its usage limit."
+        if self.services.exists() and not self.services.filter(pk=service.pk).exists():
+            return f"This discount code is not valid for {service.name}."
+        if subtotal < self.minimum_subtotal:
+            return f"This code requires a minimum booking of ₦{self.minimum_subtotal:,} before VAT."
+        return None
+
+    def discount_for(self, subtotal: int) -> int:
+        if self.kind == self.Kind.PERCENTAGE:
+            amount = int(
+                (Decimal(subtotal) * Decimal(self.value) / Decimal(100)).quantize(
+                    Decimal("1"), rounding=ROUND_HALF_UP
+                )
+            )
+            if self.maximum_discount is not None:
+                amount = min(amount, self.maximum_discount)
+            return amount
+        return min(self.value, subtotal)
 
 
 class Cleaner(models.Model):
@@ -73,6 +138,10 @@ class Booking(models.Model):
 
     pricing_mode = models.CharField(max_length=10, choices=PricingMode.choices, default=PricingMode.MANUAL)
     price_breakdown = models.JSONField(default=dict, blank=True, editable=False)
+    discount_code = models.ForeignKey(
+        DiscountCode, on_delete=models.PROTECT, related_name="bookings", null=True, blank=True
+    )
+    discount_amount = models.PositiveIntegerField(default=0, editable=False)
     subtotal = models.PositiveIntegerField(
         default=0, help_text="Naira, before VAT. For an agreed price, enter it here; VAT is added on save."
     )
@@ -139,6 +208,9 @@ class Booking(models.Model):
         """Copy a pricing.engine.Quote onto the booking."""
         self.pricing_mode = self.PricingMode.CALCULATED
         self.price_breakdown = quote.as_dict()
+        self.discount_amount = quote.code_discount_amount
+        if not quote.discount_code:
+            self.discount_code = None
         self.subtotal = quote.subtotal
         if self.vat_exempt:
             self.vat_rate, self.vat_amount = 0, 0
@@ -155,6 +227,8 @@ class Booking(models.Model):
         else:
             self.vat_rate, self.vat_amount = vat_for(self.subtotal)
         self.total = self.subtotal + self.vat_amount
+        self.discount_code = None
+        self.discount_amount = 0
         self.price_breakdown = {"manual": True, "subtotal": self.subtotal}
 
     def record_offline_payment(self, amount: int, method: str, when=None) -> "Payment":

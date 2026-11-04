@@ -7,7 +7,7 @@ import { getServices, getSite } from "@/lib/api";
 import { ContentIn, PageTransition, SkeletonOut } from "@/components/transitions";
 
 export const metadata: Metadata = {
-  title: "Book a clean",
+  title: "Book a service",
   description: "Get an instant price for commercial cleaning in Lagos and pay securely with Paystack.",
 };
 

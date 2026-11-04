@@ -11,6 +11,7 @@ export interface QuoteInputs {
   quantities: Record<string, number>;
   area_sqm: number | null;
   addon_ids: number[];
+  discount_code?: string;
 }
 
 interface Result {

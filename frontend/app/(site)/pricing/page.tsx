@@ -11,7 +11,7 @@ import { ContentIn, PageTransition, SkeletonOut } from "@/components/transitions
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Starting prices for Kleandeck's commercial cleaning services in Lagos.",
+  description: "Starting prices and quote guidance for Kleandeck commercial cleaning and facility support.",
 };
 
 async function PricingGrid() {
@@ -72,8 +72,11 @@ async function PricingGrid() {
               <strong className="text-on-surface">Extras:</strong> add-ons like upholstery or interior windows.
             </li>
             <li>
-              <strong className="text-on-surface">Location:</strong> some areas of Lagos carry a small travel charge, shown
-              before you pay.
+              <strong className="text-on-surface">Site readiness:</strong> unusual access or utilities that we must provide,
+              such as a water tanker, are confirmed separately before the job.
+            </li>
+            <li>
+              <strong className="text-on-surface">Location:</strong> any applicable travel charge is shown before you pay.
             </li>
             <li>
               <strong className="text-on-surface">VAT:</strong> {site.vat_enabled ? `${vatLabel(site.vat_rate)} VAT` : "VAT"}{" "}
@@ -104,9 +107,14 @@ export default function PricingPage() {
       <div className="container-page py-12 md:py-20">
         <SectionHeading
           eyebrow="Pricing"
-          title="Clear prices for Lagos workspaces"
-          body="Starting prices for each service. Use the calculator for an exact price for your space, including VAT."
+          title="Clear starting prices for core cleaning services"
+          body="Use the calculator for a core-service estimate, including VAT. Your final price can change when you request extras or when the site needs additional equipment, access support or utilities. We confirm those costs before work begins."
         />
+        <div className="mt-8 rounded-2xl border border-secondary bg-secondary-container/50 p-5 text-sm leading-6 text-on-surface-variant">
+          <strong className="text-on-surface">What the calculator covers:</strong> the selected standard, deep or
+          post-construction cleaning service. Add-ons and site-specific requirements are scoped separately so you can approve
+          the final amount before the team is assigned.
+        </div>
         <div className="mt-10">
           <Suspense
             fallback={

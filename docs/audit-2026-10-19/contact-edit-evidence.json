@@ -1,0 +1,13 @@
+{
+  "reference": "KD-ZBU442G",
+  "before": {
+    "total": 19350,
+    "discount_code": "AUDIT10",
+    "discount_amount": 2000
+  },
+  "after": {
+    "total": 21500,
+    "discount_code": "AUDIT10",
+    "discount_amount": 0
+  }
+}

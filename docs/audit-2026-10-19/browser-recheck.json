@@ -1,0 +1,22 @@
+[
+  {
+    "name": "discount public apply remove and invalid recovery",
+    "status": "failed",
+    "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+  },
+  {
+    "name": "cleaner create edit inactive search",
+    "status": "passed",
+    "detail": {
+      "name": "Audit Ada Recheck mvf651c6",
+      "inactive": true
+    }
+  },
+  {
+    "name": "account mismatched and wrong-current-password errors",
+    "status": "passed",
+    "detail": {
+      "wrongCurrentPasswordError": "That isn't your current password."
+    }
+  }
+]

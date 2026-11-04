@@ -21,7 +21,7 @@ export default function NotFound() {
               Home
             </Link>
             <Link href="/book" className={btn.primary}>
-              Book a clean
+              Book a service
             </Link>
           </div>
         </main>

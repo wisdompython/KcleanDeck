@@ -80,6 +80,8 @@ export interface BookingDetail extends BookingSummary {
   pricing_mode: PricingMode;
   price_breakdown: Record<string, unknown>;
   subtotal: number;
+  discount_code: string | null;
+  discount_amount: number;
   vat_exempt: boolean;
   vat_rate: string;
   vat_amount: number;
@@ -92,6 +94,24 @@ export interface BookingDetail extends BookingSummary {
   internal_notes: string;
   payments: PaymentRecord[];
   created_by_name: string | null;
+  updated_at: string;
+}
+
+export interface DiscountCode {
+  id: number;
+  code: string;
+  name: string;
+  kind: "percentage" | "fixed";
+  value: number;
+  minimum_subtotal: number;
+  maximum_discount: number | null;
+  usage_limit: number | null;
+  services: number[];
+  starts_at: string | null;
+  expires_at: string | null;
+  is_active: boolean;
+  redemption_count: number;
+  created_at: string;
   updated_at: string;
 }
 

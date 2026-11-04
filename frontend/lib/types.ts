@@ -122,6 +122,9 @@ export interface Quote {
   total: number;
   requires_quote: boolean;
   quote_reason: string;
+  discount_code: string;
+  code_discount_amount: number;
+  subtotal_before_code: number;
 }
 
 export interface PublicBooking {

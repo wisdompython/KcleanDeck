@@ -1,0 +1,106 @@
+{
+  "created": "2026-10-19",
+  "tool": "Built-in image_gen.imagegen",
+  "notes": "Recreated from the previous landing-page assets as visual references. Preserve the generated native dimensions; never upscale and label as 4K. JPEG outputs use quality 95 and 4:4:4 chroma; WebP uses quality 95. Static imports in Photo serve content-hashed URLs.",
+  "assets": [
+    {
+      "key": "offices",
+      "target": "frontend/public/images/use-cases/offices.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-522a6786-6694-4e8f-965c-2a963a2e33e8.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: high-resolution full-bleed photograph for the Kleandeck Nigerian professional cleaning landing page.\nImage 1 is only a scene and activity reference. Recreate the underlying office-cleaning photograph from scratch with substantially sharper natural detail. A bright contemporary Lagos office, glass meeting rooms and large windows, warm oak desks and grey task chairs. Three Black Nigerian professional cleaners in plain deep navy uniforms: one wiping glass, one carefully vacuuming, one wiping a desk with a turquoise microfiber cloth. Realistic human proportions, natural hands and equipment, professional calm. Medium-wide architectural editorial photo, straight perspective, daylight, fine fabric texture, crisp glass edges and wood grain. Keep the people and activity within the central 70 percent so landscape and portrait web crops work. Photographic realism and clear depth of field across the scene; no blur or fake sharpening halos.\nOutput a single landscape photograph at 3072 x 1680 pixels or greater native resolution. Edge-to-edge photo ONLY: absolutely no dashboard, interface, cards, borders, headings, overlays, logos, lettering, labels or watermarks. Do not reproduce the embedded UI in the reference.",
+      "width": 1695,
+      "height": 928,
+      "bytes": 593268
+    },
+    {
+      "key": "shortlets",
+      "target": "frontend/public/images/use-cases/shortlets.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-253e7871-e5bd-44d4-8b9f-f4562223ac8d.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: high-resolution full-bleed photograph for Kleandeck, a Nigerian professional cleaning website. Image 1 is a scene/activity reference, recreate from scratch with much sharper natural detail. Single landscape photograph, 3072 x 1680 pixels or greater native resolution. Professional architectural editorial photography, realistic perspective, soft bright daylight, clear fine texture and natural human anatomy, strong detail throughout rather than shallow blur. Edge-to-edge photo only, no embedded text, logos, signage, borders, labels, interface, graphics, certification badges or watermarks. Keep key subjects near center for web crops. A Black Nigerian female hospitality cleaner in a plain deep navy polo and beige trousers, carefully arranging folded white guest towels and an unlabelled welcome tray on a marble coffee table. Bright upscale Lagos short-stay apartment, ivory sofa, warm oak floor, floor-to-ceiling windows overlooking the lagoon. Retain the welcoming shortlet-turnover idea of the reference. Crisp natural fabric weave, accurate hands gripping the tray, clear marble veins, warm immaculate interior. No food packaging or written welcome notes.",
+      "width": 1697,
+      "height": 927,
+      "bytes": 524208
+    },
+    {
+      "key": "real_estate",
+      "target": "frontend/public/images/use-cases/real-estate.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-b9eb09bf-311f-4d6c-b736-6d26e3e0015a.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: high-resolution full-bleed photograph for Kleandeck, a Nigerian professional cleaning website. Image 1 is a scene/activity reference, recreate from scratch with much sharper natural detail. Single landscape photograph, 3072 x 1680 pixels or greater native resolution. Professional architectural editorial photography, realistic perspective, soft bright daylight, clear fine texture and natural human anatomy, strong detail throughout rather than shallow blur. Edge-to-edge photo only, no embedded text, logos, signage, borders, labels, interface, graphics, certification badges or watermarks. Keep key subjects near center for web crops. An immaculate contemporary Lagos apartment ready for handover. Open-plan elegant living room with ivory upholstery, small emerald cushions, polished pale marble floor, glass coffee table, broad floor-to-ceiling sliding glass doors and balcony, Lagos lagoon skyline beyond. No people. Retain the real-estate handover purpose and room feel of the reference. Beautiful clean surfaces, sharp window frames, realistic material grain, neutral daylight. Remove the certification card entirely; deliver pure room photography.",
+      "width": 1695,
+      "height": 928,
+      "bytes": 572599
+    },
+    {
+      "key": "interior_decor",
+      "target": "frontend/public/images/use-cases/interior-decor.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-4c79d817-b660-4c00-ab30-6a4e69b8c1e5.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: high-resolution full-bleed photograph for Kleandeck, a Nigerian professional cleaning website. Image 1 is a scene/activity reference, recreate from scratch with much sharper natural detail. Single landscape photograph, 3072 x 1680 pixels or greater native resolution. Professional architectural editorial photography, realistic perspective, soft bright daylight, clear fine texture and natural human anatomy, strong detail throughout rather than shallow blur. Edge-to-edge photo only, no embedded text, logos, signage, borders, labels, interface, graphics, certification badges or watermarks. Keep key subjects near center for web crops. A Black Nigerian female professional cleaner wearing a plain deep navy coverall, suitable gloves and closed shoes, operating a realistic rotary floor-cleaning machine after an interior fit-out. Spacious modern Lagos commercial interior with unpainted architectural concrete column, floor-to-ceiling glass, polished pale stone floor and skyline. Keep the worker and machine central with enough room around them. Retain the fit-out aftercare idea of the reference. Clear realistic machine mechanics, fabric seams, small gentle patches of cleaning foam, sharp glass and stone texture. No branded equipment, no lettering.",
+      "width": 1695,
+      "height": 928,
+      "bytes": 713519
+    },
+    {
+      "key": "standard",
+      "target": "frontend/public/images/services/standard.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-19a34fb6-c672-4976-af89-ad20425cf99a.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: production photography for Kleandeck's professional cleaning landing page in Nigeria. Reference image 1 sets the activity and environment; recreate the scene with crisp, natural photographic detail, not a blurry enlargement. Produce one high-resolution 4K landscape image, ideally 3840 x 2160 native pixels. Realistic architectural editorial photography, daylight, deep focus, sharp fabric seams, natural skin texture, precise glass edges and material grain. Keep the important subject/action in the central area for website crops. Pure full-bleed photo only; no text, letters, logos, brand labels, borders, UI, certificates, badges or watermarks. Workers wear plain deep navy uniforms. Two Black Nigerian professional cleaners carefully cleaning a bright glass-walled meeting room in a contemporary Lagos office. Woman in the foreground wiping an oak conference table with a turquoise microfiber cloth, realistic gloved hands; man behind her vacuuming alongside grey upholstered meeting chairs. Wide enough to show full working poses and equipment. Warm wood, grey chairs, soft lagoon daylight. Retain the scene concept of the reference. Natural, calm and credible.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 539739
+    },
+    {
+      "key": "deep",
+      "target": "frontend/public/images/services/deep.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-cae61c18-7c7a-4475-9924-9a5b1917e36c.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: production photography for Kleandeck's professional cleaning landing page in Nigeria. Reference image 1 sets the activity and environment; recreate the scene with crisp, natural photographic detail, not a blurry enlargement. Produce one high-resolution 4K landscape image, ideally 3840 x 2160 native pixels. Realistic architectural editorial photography, daylight, deep focus, sharp fabric seams, natural skin texture, precise glass edges and material grain. Keep the important subject/action in the central area for website crops. Pure full-bleed photo only; no text, letters, logos, brand labels, borders, UI, certificates, badges or watermarks. Workers wear plain deep navy uniforms. Two Black Nigerian male professionals performing detailed deep cleaning in a modern daylight Lagos office. One uses a professional carpet extraction wand on grey carpet tiles, the other dusts a ceiling ventilation grille with a practical lightweight telescopic brush. Appropriate gloves and masks. Clear real-world equipment geometry, believable hands. Glass meeting rooms and tidy workstations behind. Retain deep-cleaning activities and room feel of the reference.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 598074
+    },
+    {
+      "key": "move",
+      "target": "frontend/public/images/services/move.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-ffae2d45-9f05-4718-a9ac-5e59ce2c17bc.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: production photography for Kleandeck's professional cleaning landing page in Nigeria. Reference image 1 sets the activity and environment; recreate the scene with crisp, natural photographic detail, not a blurry enlargement. Produce one high-resolution 4K landscape image, ideally 3840 x 2160 native pixels. Realistic architectural editorial photography, daylight, deep focus, sharp fabric seams, natural skin texture, precise glass edges and material grain. Keep the important subject/action in the central area for website crops. Pure full-bleed photo only; no text, letters, logos, brand labels, borders, UI, certificates, badges or watermarks. Workers wear plain deep navy uniforms. An immaculate empty Lagos office ready for move-in and handover. Large clear floor-to-ceiling windows on the left, transparent glass meeting-room partitions with slender grey mullions receding toward the right, pale polished stone tile floor with clean daylight reflections, off-white walls and orderly exposed-ceiling services. View from a room corner with accurate one-point perspective. No people and no furniture. Same general room composition as reference but recreate at maximum sharpness. No restroom sign or other text. This clean image will be the precise after scene of an interactive before/after cleaning comparison, so maintain clear architectural lines.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 490136
+    },
+    {
+      "key": "post_construction",
+      "target": "frontend/public/images/services/post-construction.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-ac5f0076-1682-485c-a364-8a89e317001c.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: production photography for Kleandeck's professional cleaning landing page in Nigeria. Reference image 1 sets the activity and environment; recreate the scene with crisp, natural photographic detail, not a blurry enlargement. Produce one high-resolution 4K landscape image, ideally 3840 x 2160 native pixels. Realistic architectural editorial photography, daylight, deep focus, sharp fabric seams, natural skin texture, precise glass edges and material grain. Keep the important subject/action in the central area for website crops. Pure full-bleed photo only; no text, letters, logos, brand labels, borders, UI, certificates, badges or watermarks. Workers wear plain deep navy uniforms. A team of three Black Nigerian cleaners doing final post-construction cleaning of a newly completed Lagos office fit-out. One operates a professional floor scrubber on pale stone tiles; two clean large windows with a microfiber pad and squeegee. Dust-free finished walls, exposed ceiling services, daylight and distant city skyline. Believable distinct working poses, practical equipment and navy uniforms with appropriate gloves. Retain post-build handover idea of reference without any labels or logos.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 574585
+    },
+    {
+      "key": "facility",
+      "target": "frontend/public/images/services/facility.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-7b386d9e-875c-4a4a-ad95-f08df1e170d7.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: production photography for Kleandeck's professional cleaning landing page in Nigeria. Reference image 1 sets the activity and environment; recreate the scene with crisp, natural photographic detail, not a blurry enlargement. Produce one high-resolution 4K landscape image, ideally 3840 x 2160 native pixels. Realistic architectural editorial photography, daylight, deep focus, sharp fabric seams, natural skin texture, precise glass edges and material grain. Keep the important subject/action in the central area for website crops. Pure full-bleed photo only; no text, letters, logos, brand labels, borders, UI, certificates, badges or watermarks. Workers wear plain deep navy uniforms. A Black Nigerian male office support professional, smiling naturally as he wipes down a stainless espresso machine and a pale marble counter in a bright modern Lagos corporate pantry and lounge. Plain deep navy uniform. Warm oak cabinets, neatly arranged plain white cups and glassware, upholstered office lounge chairs in background, daylight from tall windows. Natural hands and cloth contact. Retain office hospitality support idea of reference, but remove all branded packaging and lettering.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 542028
+    },
+    {
+      "key": "hero",
+      "target": "frontend/public/images/hero.jpg",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-a09b7206-e56b-42af-9490-9dc396191721.png",
+      "prompt": "Use case: photorealistic-natural. Asset type: Kleandeck professional cleaning landing-page fallback hero. Image 1 is the activity and composition reference. Recreate as a sharper high-resolution landscape editorial photograph, ideally native 3840 x 2160 pixels. A Black Nigerian male cleaner in a plain navy uniform carefully wiping an oak conference table with a turquoise microfiber cloth, and a Black Nigerian female cleaner vacuuming beside grey meeting chairs. Bright modern Lagos boardroom with tall windows and lagoon/city view, warm oak table, neutral daylight. Clear real fabric texture, skin, realistic hands, equipment, wood grain, glass edges and natural perspective. Keep key activity centrally framed for web crops. Edge-to-edge photo ONLY. No text, labels, signage, logos, borders, watermarks, badges or interface. Do not blur the scene; use natural deep focus.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 592458
+    },
+    {
+      "key": "before",
+      "target": "frontend/public/images/cleaning-before.webp",
+      "generatedSource": "C:\\Users\\Hp\\.codex\\generated_images\\01a153dd-8724-7902-8b35-781c82a772c3\\exec-915cc6be-65c8-47ae-b2c7-03a9007873f4.png",
+      "prompt": "Use case: precise-object-edit. Asset type: before frame of an interactive cleaning comparison on the Kleandeck landing page. Image 1 is the EXACT clean after scene and edit target. Create the BEFORE version by changing ONLY removable surface dirt. Keep the exact same image dimensions, crop, camera position, perspective, glass mullions, window lines, walls, ceiling fixtures, skyline, reflections, floor tiles, floor grout geometry and daylight. Add visible realistic fine grey construction dust and several subtle dusty footprints to the floor, especially the foreground, plus light removable hand smudges on some glass panes. The difference should read clearly as cleaning, not rebuilding or refurnishing. Do not add or remove architecture, no furniture, people, debris piles, tools, signs, text, logos, borders or watermark. Preserve every architectural feature with pixel alignment so both images can be overlaid in a slider. Retain the clear crisp detail of the reference.",
+      "width": 1672,
+      "height": 941,
+      "bytes": 367846
+    }
+  ]
+}

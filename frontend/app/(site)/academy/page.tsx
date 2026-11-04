@@ -6,13 +6,13 @@ import { PageTransition } from "@/components/transitions";
 
 export const metadata: Metadata = {
   title: "Training academy",
-  description: "Kleandeck Academy: a two-week programme in professional commercial cleaning in Lagos.",
+  description: "Kleandeck Academy screening and practical training for professional cleaning and facility support.",
 };
 
-// Programme outline — confirm with Kleandeck before launch.
 const modules = [
-  { week: "Week 1", title: "Foundations", body: "Cleaning methods, safe use of products and equipment, and standards for offices and homes." },
-  { week: "Week 2", title: "On the job", body: "Deep, move-in/out and post-construction cleaning, customer conduct, and supervised practice." },
+  { week: "Step 1", title: "Screening", body: "Applicants provide the required identity and background information for review before placement." },
+  { week: "Step 2", title: "Cleaning foundations", body: "Safe product use, equipment basics, workplace conduct and standards for commercial spaces." },
+  { week: "Step 3", title: "Practical readiness", body: "Supervised practice for cleaning, handover routines and the basics of professional facility support." },
 ];
 
 export default function AcademyPage() {
@@ -23,8 +23,8 @@ export default function AcademyPage() {
           <div>
             <SectionHeading
               eyebrow="Kleandeck Academy"
-              title="Two weeks to professional cleaning"
-              body="Our training programme prepares new cleaners and assistants for commercial work. Send an enquiry and we'll share dates, costs and requirements."
+              title="Screened, trained and ready for professional work"
+              body="Our two-week programme prepares cleaners and facilities assistants for commercial spaces. Send an enquiry and we'll share the current dates, costs and requirements."
             />
             <ol className="mt-10 space-y-4">
               {modules.map((m) => (

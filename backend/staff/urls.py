@@ -7,6 +7,7 @@ router = DefaultRouter(trailing_slash=True)
 router.include_root_view = False
 router.register("bookings", views.BookingViewSet, basename="admin-bookings")
 router.register("cleaners", views.CleanerViewSet, basename="admin-cleaners")
+router.register("discount-codes", views.DiscountCodeViewSet, basename="admin-discount-codes")
 router.register("applications", views.ApplicationViewSet, basename="admin-applications")
 router.register("services", views.ServiceViewSet, basename="admin-services")
 router.register("frequencies", views.FrequencyViewSet, basename="admin-frequencies")

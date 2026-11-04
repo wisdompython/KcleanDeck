@@ -1,0 +1,271 @@
+{
+  "results": [
+    {
+      "name": "settings unsaved tab-switch retention",
+      "status": "passed"
+    },
+    {
+      "name": "layout 390 /admin",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 390 /admin/services/1?tab=pricing",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 390 /admin/bookings/new",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 390 /admin/settings?tab=frequencies",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 390 /admin/discounts",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 390 /admin/team",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin/services/1?tab=pricing",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin/bookings/new",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin/settings?tab=frequencies",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin/discounts",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 768 /admin/team",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin/services/1?tab=pricing",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin/bookings/new",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin/settings?tab=frequencies",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin/discounts",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    },
+    {
+      "name": "layout 1440 /admin/team",
+      "status": "passed",
+      "detail": {
+        "overflow": 0,
+        "offenders": []
+      }
+    }
+  ],
+  "observations": [
+    {
+      "name": "settingsTabDataLoss",
+      "original": "Kleandeck",
+      "after": "UNSAVED AUDIT BUSINESS",
+      "dialogs": 0
+    },
+    {
+      "dialog": ""
+    },
+    {
+      "width": 390,
+      "url": "/admin",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "url": "/admin/services/1?tab=pricing",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "url": "/admin/bookings/new",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "url": "/admin/settings?tab=frequencies",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "url": "/admin/discounts",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 390,
+      "url": "/admin/team",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin/services/1?tab=pricing",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin/bookings/new",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin/settings?tab=frequencies",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin/discounts",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 768,
+      "url": "/admin/team",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin/services/1?tab=pricing",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin/bookings/new",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin/settings?tab=frequencies",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin/discounts",
+      "overflow": 0,
+      "offenders": []
+    },
+    {
+      "width": 1440,
+      "url": "/admin/team",
+      "overflow": 0,
+      "offenders": []
+    }
+  ]
+}

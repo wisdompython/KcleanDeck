@@ -58,7 +58,7 @@ const tabs = [
   {
     id: "faqs",
     label: "FAQs",
-    description: "Questions and answers on the FAQ page, and which ones also appear on the homepage.",
+    description: "Questions and answers shown in the homepage FAQ section.",
   },
 ] as const;
 
@@ -630,12 +630,7 @@ function FaqRow({ row, editor }: { row: Partial<AdminFaq>; editor: ReturnType<ty
           <Switch
             checked={r.is_active ?? true}
             onChange={(v) => setR({ ...r, is_active: v })}
-            label="Show on FAQ page"
-          />
-          <Switch
-            checked={r.show_on_homepage ?? false}
-            onChange={(v) => setR({ ...r, show_on_homepage: v })}
-            label="Also on homepage"
+            label="Publish this answer"
           />
         </div>
       </div>
@@ -647,7 +642,7 @@ function FaqsEditor() {
   const editor = useRowsEditor<AdminFaq>("faqs", "admin-faqs", "FAQ");
   if (editor.query.isPending) return <Spinner />;
   return (
-    <Panel title="FAQs" description="Questions on the FAQ page and homepage, in this order.">
+    <Panel title="FAQs" description="Questions in the homepage FAQ section, in this order.">
       {editor.query.data?.map((f) => (
         <FaqRow
           key={`${f.id}-${f.question}-${f.answer}-${f.is_active}-${f.show_on_homepage}`}
@@ -665,7 +660,7 @@ function FaqsEditor() {
             question: "",
             answer: "",
             is_active: true,
-            show_on_homepage: false,
+            show_on_homepage: true,
             sort_order: 99,
           }}
           editor={editor}

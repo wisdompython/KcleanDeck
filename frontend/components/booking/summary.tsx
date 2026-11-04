@@ -62,6 +62,9 @@ export function Summary({
           {quote.discount_amount > 0 && (
             <Row label={`${frequency?.label ?? "Frequency"} discount`} value={`−${naira(quote.discount_amount)}`} />
           )}
+          {quote.code_discount_amount > 0 && (
+            <Row label={`Code ${quote.discount_code}`} value={`−${naira(quote.code_discount_amount)}`} />
+          )}
           {quote.minimum_applied && <Row label="Minimum charge applies" value="" muted />}
           {quote.area_surcharge > 0 && <Row label={`Travel (${area?.name})`} value={naira(quote.area_surcharge)} />}
           {quote.visits > 1 && (

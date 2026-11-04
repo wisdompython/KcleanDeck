@@ -1,0 +1,22 @@
+[
+  {
+    "name": "contact-only edit preserves discounted price",
+    "status": "failed",
+    "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: 19350\nReceived: 21500"
+  },
+  {
+    "name": "hidden per-unit service contact edit preserves quantities and price",
+    "status": "failed",
+    "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: 62350\nReceived: 40850"
+  },
+  {
+    "name": "hidden-service booking edit retains visible price context",
+    "status": "failed",
+    "error": "expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false"
+  },
+  {
+    "name": "zero-price new service requires publication validation",
+    "status": "failed",
+    "error": "expect(locator).toBeVisible() failed\n\nLocator: getByText('Service created')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByText('Service created') with timeout 5000ms\n  - waiting for getByText('Service created')\n"
+  }
+]

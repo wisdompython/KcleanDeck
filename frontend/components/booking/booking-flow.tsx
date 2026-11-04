@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Check, CircleCheck, Link2, LoaderCircle, Lock, Minus, Plus } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, CircleCheck, Link2, LoaderCircle, Lock, Minus, Plus, TicketPercent, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -181,6 +181,8 @@ export function BookingFlow({
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [quoteRef, setQuoteRef] = useState<string | null>(null);
+  const [discountDraft, setDiscountDraft] = useState("");
+  const [discountCode, setDiscountCode] = useState("");
 
   function chooseService(next: Service) {
     const fresh = defaultChoices(next);
@@ -189,6 +191,8 @@ export function BookingFlow({
     setQuantities(fresh.quantities);
     setAreaSqm(fresh.areaSqm);
     setAddonIds(fresh.addonIds);
+    setDiscountDraft("");
+    setDiscountCode("");
     setSubmitError("");
     setStep("price");
   }
@@ -202,8 +206,9 @@ export function BookingFlow({
       quantities: service.pricing_method === "per_unit" ? quantities : {},
       area_sqm: service.pricing_method === "per_sqm" && sqm > 0 ? sqm : null,
       addon_ids: addonIds,
+      discount_code: discountCode,
     }),
-    [service, frequencyId, areaId, quantities, sqm, addonIds],
+    [service, frequencyId, areaId, quantities, sqm, addonIds, discountCode],
   );
   const { quote, error: quoteError, loading } = useQuote(inputs, !quoteOnly);
 
@@ -486,6 +491,49 @@ export function BookingFlow({
                 .
               </p>
             </Panel>
+
+            {!quoteOnly && (
+              <Panel title="Have a discount code?">
+                <form
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    setDiscountCode(discountDraft.trim().toUpperCase());
+                  }}
+                  className="flex flex-col gap-2 sm:flex-row"
+                >
+                  <label className="relative flex-1">
+                    <span className="sr-only">Discount code</span>
+                    <TicketPercent className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-outline" />
+                    <input
+                      value={discountDraft}
+                      onChange={(event) => setDiscountDraft(event.target.value.toUpperCase())}
+                      placeholder="Enter your code"
+                      autoComplete="off"
+                      className="field pl-10 font-semibold tracking-[0.04em] uppercase"
+                    />
+                  </label>
+                  <button type="submit" disabled={!discountDraft.trim() || loading} className={btn.ghost}>
+                    {loading && discountCode ? <LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> : null}
+                    Apply code
+                  </button>
+                </form>
+                {discountCode && quoteError && (
+                  <p role="alert" className="mt-2 text-sm text-error">{quoteError}</p>
+                )}
+                {quote?.discount_code && !quoteError && (
+                  <div className="mt-3 flex items-center justify-between gap-3 rounded-xl bg-secondary-container px-4 py-3 text-sm text-on-secondary-container">
+                    <span className="flex items-center gap-2 font-semibold"><Check className="size-4" /> {quote.discount_code} applied</span>
+                    <button
+                      type="button"
+                      onClick={() => { setDiscountCode(""); setDiscountDraft(""); }}
+                      className="inline-flex items-center gap-1 font-semibold underline underline-offset-4"
+                    >
+                      <X className="size-3.5" /> Remove
+                    </button>
+                  </div>
+                )}
+              </Panel>
+            )}
 
             <div className="lg:hidden">{summary}</div>
 

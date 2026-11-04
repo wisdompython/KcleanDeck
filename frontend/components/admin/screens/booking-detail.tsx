@@ -51,6 +51,8 @@ type Breakdown = {
   minimum_applied?: boolean;
   estimate?: Breakdown;
   subtotal?: number;
+  discount_code?: string;
+  code_discount_amount?: number;
 };
 
 function Row({ label, children }: { label: string; children: React.ReactNode }) {
@@ -328,6 +330,12 @@ export function BookingDetailScreen() {
                     <div className="flex justify-between">
                       <span>Frequency discount</span>
                       <span className="tabular">−{naira(shown.discount_amount)}</span>
+                    </div>
+                  )}
+                  {!!b.discount_amount && (
+                    <div className="flex justify-between text-tertiary">
+                      <span>Code {b.discount_code}</span>
+                      <span className="tabular">−{naira(b.discount_amount)}</span>
                     </div>
                   )}
                   {!!shown.area_surcharge && (

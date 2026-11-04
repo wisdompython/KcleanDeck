@@ -9,8 +9,9 @@ type FooterLink = { href: string; label: string };
 const companyColumn = {
   title: "Company",
     links: [
+      { href: "/about", label: "About us" },
       { href: "/pricing", label: "Pricing" },
-      { href: "/faq", label: "FAQ" },
+      { href: "/#faq", label: "FAQ" },
       { href: "/careers", label: "Careers" },
       { href: "/academy", label: "Training academy" },
       { href: "/terms", label: "Terms & conditions" },
@@ -33,7 +34,7 @@ function FooterFrame({
         <div>
           <Image src="/logo-white.png" unoptimized alt="Kleandeck" width={463} height={318} className="h-14 w-auto" />
           <p className="mt-4 max-w-xs text-sm leading-6">
-            Commercial cleaning and facility support for offices, shortlets, properties and fit-outs.
+            Commercial cleaning and facility support for offices, gyms, interior projects and growing businesses.
           </p>
         </div>
         {columns.map((col) => (

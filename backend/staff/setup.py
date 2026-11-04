@@ -29,7 +29,7 @@ def checklist() -> dict:
         {
             "key": "whatsapp",
             "title": "Add your WhatsApp number",
-            "description": "Every \"Chat on WhatsApp\" button and quote request uses it.",
+            "description": "The floating WhatsApp contact and custom quote requests use it.",
             "href": "/admin/settings?tab=business",
             "done": bool(s.whatsapp_number),
         },
@@ -64,8 +64,8 @@ def checklist() -> dict:
         },
         {
             "key": "terms",
-            "title": "Finish your terms and conditions",
-            "description": "Replace the draft with your final terms (cancellations, damages, site requirements).",
+            "title": "Review your terms and conditions",
+            "description": "Check the published booking, refund, claims and site-requirement terms.",
             "href": "/admin/settings?tab=terms",
             "done": bool(s.terms_content) and DRAFT_TERMS_MARKER not in s.terms_content,
         },

@@ -112,7 +112,7 @@ test.describe("Services, rates and settings", () => {
     await expect(page.locator("aside").filter({ visible: true }).first()).toContainText(`Travel (${area})`);
   });
 
-  test("FAQs added in the admin appear on the FAQ page", async ({ page }) => {
+  test("FAQs added in the admin appear on the homepage", async ({ page }) => {
     const question = unique("Do you clean server rooms?");
     const answer = unique("Yes, with anti-static equipment on request. Ref");
     await page.goto("/admin/settings?tab=faqs");
@@ -121,7 +121,7 @@ test.describe("Services, rates and settings", () => {
     await page.getByRole("button", { name: "Save" }).click();
     await expect(page.getByText("FAQ added")).toBeVisible();
 
-    await page.goto("/faq");
+    await page.goto("/#faq");
     await page.getByRole("button", { name: question }).click();
     await expect(page.getByText(answer)).toBeVisible();
   });

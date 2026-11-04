@@ -12,6 +12,7 @@ export function CleaningReveal() {
 
   return (
     <figure className={styles.comparisonFigure}>
+      <span className={styles.comparisonArea}>Office &amp; restroom areas</span>
       <div className={styles.comparison}>
         <Photo
           src="/images/services/move.jpg"
@@ -25,8 +26,8 @@ export function CleaningReveal() {
         >
           <Photo src="/images/cleaning-before.webp" alt="" sizes="(min-width: 1280px) 1216px, 100vw" />
         </div>
-        <span className={`${styles.sceneLabel} ${styles.beforeLabel}`} aria-hidden="true">Before the clean</span>
-        <span className={`${styles.sceneLabel} ${styles.afterLabel}`} aria-hidden="true">A fresh start</span>
+        <span className={`${styles.sceneLabel} ${styles.beforeLabel}`} aria-hidden="true">Before cleaning</span>
+        <span className={`${styles.sceneLabel} ${styles.afterLabel}`} aria-hidden="true">After verification</span>
         <div className={styles.revealHandle} style={{ left: `${position}%` }} aria-hidden="true">
           <span><MoveHorizontal size={22} strokeWidth={1.7} /></span>
         </div>
@@ -37,7 +38,7 @@ export function CleaningReveal() {
           max="100"
           value={position}
           onChange={(event) => setPosition(Number(event.target.value))}
-          aria-label="Reveal the clean space"
+          aria-label="Reveal the cleaned office and restroom areas"
           aria-describedby={helpId}
           aria-valuetext={`${100 - position}% of the clean scene revealed`}
         />

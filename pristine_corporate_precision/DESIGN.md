@@ -53,43 +53,43 @@ colors:
   whatsapp: '#25D366'
 typography:
   display:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 56px
-    fontWeight: '800'
+    fontWeight: '700'
     lineHeight: 64px
     letterSpacing: -0.03em
   display-mobile:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 36px
-    fontWeight: '800'
+    fontWeight: '700'
     lineHeight: 44px
     letterSpacing: -0.02em
   headline-xl:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 40px
     fontWeight: '700'
     lineHeight: 48px
     letterSpacing: -0.02em
   headline-xl-mobile:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 28px
     fontWeight: '700'
     lineHeight: 36px
     letterSpacing: -0.015em
   headline-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 32px
     fontWeight: '700'
     lineHeight: 40px
     letterSpacing: -0.015em
   headline-md:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 24px
     fontWeight: '600'
     lineHeight: 32px
     letterSpacing: -0.01em
   headline-sm:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 20px
     fontWeight: '600'
     lineHeight: 28px
@@ -113,19 +113,19 @@ typography:
     lineHeight: 20px
     letterSpacing: 0em
   label-lg:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 15px
     fontWeight: '600'
     lineHeight: 20px
     letterSpacing: 0.01em
   label-md:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 13px
     fontWeight: '600'
     lineHeight: 18px
     letterSpacing: 0.02em
   label-sm:
-    fontFamily: Plus Jakarta Sans
+    fontFamily: Instrument Sans
     fontSize: 11px
     fontWeight: '700'
     lineHeight: 16px
@@ -174,11 +174,11 @@ The palette establishes clinical order paired with vibrant energy:
 
 ## Typography
 
-The type system pairs **Plus Jakarta Sans** for expressive, humanistic geometric headlines and badges with **Inter** for clinical, data-dense legibility across operational tables, pricing matrices, and facility service specs.
+The type system pairs **Instrument Sans** for clean, confident headlines and labels with **Inter** for clinical, data-dense legibility across operational tables, pricing matrices, and facility service specs.
 
-- **Headings (Plus Jakarta Sans):** Set with negative tracking to convey density, weight, and executive confidence. Numbers and metric readouts should leverage tabular figures when displaying square footage or currency figures (NGN ₦).
+- **Headings (Instrument Sans):** Use medium-to-bold weights with restrained negative tracking for a confident, contemporary character. Numbers and metric readouts should leverage tabular figures when displaying square footage or currency figures (NGN ₦).
 - **Body & Longform (Inter):** Regular 400 weight with relaxed line heights ensures high readability during multi-step quotation workflows and facility audit logs.
-- **Labels & Micro-Tokens (Plus Jakarta Sans):** Employs medium to bold weights with uppercase treatment for pill metadata, status tags, and operational dispatch counters.
+- **Labels & Micro-Tokens (Instrument Sans):** Employ medium-to-bold weights with uppercase treatment for pill metadata, status tags, and operational dispatch counters.
 
 ## Layout & Spacing
 
@@ -211,9 +211,10 @@ The design system uses a deliberate, rounded geometry (level 2) that softens cor
 ## Components
 
 ### Buttons
-- **Primary Action:** Deep Oceanic Navy (`#0A2540`) background with Crisp White text. Fully rounded pill (`rounded-full`) or `rounded-xl`, `h-12`, medium weight Plus Jakarta Sans text. Subtle hover state shifting to Navy-800 (`#071C33`) with a crisp micro-lift (`translate-y-[-1px]`).
+- **Primary Action:** Deep Oceanic Navy (`#0A2540`) background with Crisp White text. Fully rounded pill (`rounded-full`) or `rounded-xl`, `h-12`, medium weight Instrument Sans text. Subtle hover state shifting to Navy-800 (`#071C33`) with a crisp micro-lift (`translate-y-[-1px]`).
 - **Accent Action:** Emerald Green (`#0E9F6E`) background with Crisp White text. Reserved for primary conversion flows ("Book Deep Clean", "Instant Inspection").
 - **Secondary / Ghost:** Transparent background with `1px` border in `#E2E8F0`, slate-900 text, shifting to frost-white background (`#F8FAFC`) on hover.
+- **Global CTA hierarchy (meeting decision, 23 Oct 2026 at 00:40:29; wording refined 4 Nov 2026):** "Book a service" is the only persistent primary action in the header. It covers both cleaning and facility-support bookings without awkward phrasing. Do not place a full "Chat on WhatsApp" button beside it. WhatsApp remains available as the circular floating contact control and may appear contextually where conversation is required, such as a custom-quote state.
 
 ### Badges & Status Chips
 - Height `28px`, pill-shaped (`rounded-full`), padded `px-3.5`.
@@ -241,4 +242,4 @@ The design system uses a deliberate, rounded geometry (level 2) that softens cor
 
 ### Floating Urgent Concierge / WhatsApp Trigger
 - Fixed position: Bottom right (`bottom-6 right-6`), z-index 50.
-- Diameter `56px` circular pill or expanded pill (`h-14 px-5`) with WhatsApp brand Emerald (`#25D366`), white typography, and distinct ambient shadow (`0px 12px 28px rgba(37, 211, 102, 0.38)`).
+- Diameter `56px` circular control with WhatsApp brand Emerald (`#25D366`), a white icon, accessible label/tooltip, and distinct ambient shadow (`0px 12px 28px rgba(37, 211, 102, 0.38)`). Keep it icon-only at every breakpoint so it does not compete with the booking CTA.

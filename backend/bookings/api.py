@@ -72,37 +72,41 @@ class BookingCreate(APIView):
     def post(self, request):
         ser = BookingCreateSerializer(data=request.data)
         ser.is_valid(raise_exception=True)
-        quote = ser.calculate()
-        if quote.requires_quote:
+        preview_quote = ser.calculate()
+        if preview_quote.requires_quote:
             return Response(
-                {"detail": quote.quote_reason, "requires_quote": True}, status=status.HTTP_400_BAD_REQUEST
+                {"detail": preview_quote.quote_reason, "requires_quote": True}, status=status.HTTP_400_BAD_REQUEST
             )
 
         d = ser.validated_data
-        booking = Booking(
-            source=Booking.Source.ONLINE,
-            status=Booking.Status.AWAITING_PAYMENT,
-            service=d["service"],
-            frequency=d.get("frequency") or d["service"].available_frequencies().first(),
-            area=d.get("area"),
-            inputs=ser.inputs_json(),
-            company_name=d["company_name"],
-            contact_name=d["contact_name"],
-            email=d["email"],
-            phone=d["phone"],
-            address=d["address"],
-            site_notes=d["site_notes"],
-            scheduled_date=d["scheduled_date"],
-            time_slot=d["time_slot"],
-            terms_accepted_at=timezone.now(),
-            site_requirements_confirmed=True,
-        )
-        booking.apply_quote(quote)
-        due_now = d["service"].deposit_for(booking.total)
-        if due_now < booking.total:
-            booking.deposit_amount = due_now
         try:
             with transaction.atomic():
+                # Recalculate while locking a limited-use code so two simultaneous
+                # checkouts cannot both claim the final redemption.
+                quote = ser.calculate(lock_discount=True)
+                booking = Booking(
+                    source=Booking.Source.ONLINE,
+                    status=Booking.Status.AWAITING_PAYMENT,
+                    service=d["service"],
+                    frequency=d.get("frequency") or d["service"].available_frequencies().first(),
+                    area=d.get("area"),
+                    inputs=ser.inputs_json(),
+                    discount_code=ser.applied_discount,
+                    company_name=d["company_name"],
+                    contact_name=d["contact_name"],
+                    email=d["email"],
+                    phone=d["phone"],
+                    address=d["address"],
+                    site_notes=d["site_notes"],
+                    scheduled_date=d["scheduled_date"],
+                    time_slot=d["time_slot"],
+                    terms_accepted_at=timezone.now(),
+                    site_requirements_confirmed=True,
+                )
+                booking.apply_quote(quote)
+                due_now = d["service"].deposit_for(booking.total)
+                if due_now < booking.total:
+                    booking.deposit_amount = due_now
                 booking.save()
                 payment = paystack.initialize_payment(booking, due_now)
         except paystack.PaystackError as exc:

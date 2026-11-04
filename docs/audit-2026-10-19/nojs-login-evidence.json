@@ -1,0 +1,5 @@
+{
+  "scenario": "JavaScript disabled; sign-in form default submission",
+  "url": "http://localhost:8089/admin/login?email=qa-nojs%40example.test&password=synthetic-not-secret",
+  "credentialsInQuery": true
+}

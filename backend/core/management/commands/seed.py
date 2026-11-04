@@ -214,14 +214,12 @@ FAQS = [
     ),
     (
         "Can I reschedule or cancel?",
-        "Yes — see our terms for notice periods. Message us on WhatsApp with your booking reference.",
+        "Message us on WhatsApp with your booking reference. Confirmed bookings are non-refundable unless Kleandeck does not attend the agreed booking; in that case, you can choose a reschedule or refund.",
         False,
     ),
 ]
 
-TERMS = """**Draft — replace with Kleandeck's final terms before launch.**
-
-## 1. Bookings
+TERMS = """## 1. Bookings
 A booking is confirmed once payment is received, or once we confirm a custom quote in writing on WhatsApp or email.
 
 ## 2. Prices and VAT
@@ -231,10 +229,12 @@ Prices are worked out from the details you give us. VAT is charged at 7.5% and s
 You must provide running water and electricity (mains or generator) for the whole job, and access to the space at the booked time. If we can't start because water, power or access isn't available, the visit may be charged.
 
 ## 4. Rescheduling and cancellations
-[To be confirmed by Kleandeck: notice period, refunds and fees.]
+Payments are non-refundable once a booking is confirmed. If Kleandeck does not attend at the agreed date and time, you may choose either a rescheduled service or a refund of the affected booking payment.
+
+Contact us as soon as possible if you need to request a change. A requested reschedule is not confirmed until Kleandeck agrees the new date and time in writing.
 
 ## 5. Damages and claims
-[To be confirmed by Kleandeck: how to report an issue, time limits and liability.]
+Report any damage or service concern promptly with your booking reference and supporting details. We will review the information and respond with the next steps.
 
 ## 6. Contact
 Message us on WhatsApp with your booking reference for any question about a booking.
@@ -242,7 +242,7 @@ Message us on WhatsApp with your booking reference for any question about a book
 
 
 class Command(BaseCommand):
-    help = "Load starter services, placeholder rates, areas, FAQs and draft terms (only fills in what's missing)."
+    help = "Load starter services, placeholder rates, areas, FAQs and terms (only fills in what's missing)."
 
     @transaction.atomic
     def handle(self, *args, **options):
