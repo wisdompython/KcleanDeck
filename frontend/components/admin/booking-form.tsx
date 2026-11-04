@@ -323,7 +323,7 @@ export function BookingForm({ services, site, existing }: { services: Service[];
                 <input id={id} required type="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} className={inputClass} />
               )}
             </Field>
-            <Field label="Email" hint="Needed to send a Paystack payment link" error={fieldError("email")}>
+            <Field label="Email" hint="Optional contact for confirmations and receipts" error={fieldError("email")}>
               {(id) => (
                 <input id={id} type="email" value={form.email} onChange={(e) => set("email", e.target.value)} className={inputClass} />
               )}

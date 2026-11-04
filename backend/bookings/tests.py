@@ -31,7 +31,7 @@ def fake_initialize_response(reference_holder):
     return _post
 
 
-@override_settings(PAYSTACK_SECRET_KEY=SECRET, FRONTEND_URL="https://kleandeck.test")
+@override_settings(PAYSTACK_SECRET_KEY=SECRET, FRONTEND_URL="https://kleandeck.test", ONLINE_PAYMENTS_ENABLED=True)
 class BookingFlowTests(TestCase):
     def setUp(self):
         cache.clear()  # reset API rate limits between tests
@@ -125,6 +125,13 @@ class BookingFlowTests(TestCase):
         self.assertEqual(sent[0]["amount"], booking.total * 100)
         self.assertEqual(sent[0]["callback_url"], "https://kleandeck.test/booking/confirmation")
         self.assertTrue(res.json()["authorization_url"].startswith("https://checkout.paystack.com/"))
+
+    @override_settings(ONLINE_PAYMENTS_ENABLED=False)
+    def test_online_checkout_can_be_temporarily_disabled(self):
+        res = self.client.post("/api/bookings/", self.booking_payload(), format="json")
+        self.assertEqual(res.status_code, 503)
+        self.assertIn("temporarily disabled", res.json()["detail"])
+        self.assertFalse(Booking.objects.exists())
 
     def test_terms_and_site_requirements_required(self):
         res = self.client.post(

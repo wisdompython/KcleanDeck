@@ -46,7 +46,7 @@ export function LoginForm() {
             Bookings, cleaners and rates in one place.
           </h1>
           <p className="mt-4 max-w-md text-white/70">
-            Confirm jobs, assign your team, send Paystack payment links and keep prices up to date.
+            Confirm jobs, assign your team, record agreed payments and keep prices up to date.
           </p>
         </div>
         <p className="text-sm text-white/50">Kleandeck · Lagos</p>

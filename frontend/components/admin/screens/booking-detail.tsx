@@ -6,7 +6,6 @@ import {
   CheckCheck,
   Copy,
   Droplets,
-  Link2,
   Mail,
   MapPin,
   Pencil,
@@ -86,7 +85,6 @@ export function BookingDetailScreen() {
   const [payAmount, setPayAmount] = useState("");
   const [cancelOpen, setCancelOpen] = useState(false);
   const [notes, setNotes] = useState<string | null>(null);
-  const [link, setLink] = useState<string | null>(null);
 
   function onSaved(updated: BookingDetail, message: string) {
     client.setQueryData(key, updated);
@@ -111,16 +109,6 @@ export function BookingDetailScreen() {
       setPayAmount("");
     },
   });
-  const paymentLink = useMutation({
-    mutationFn: () => api<{ authorization_url: string; amount: number }>(`bookings/${reference}/payment-link/`, { method: "POST" }),
-    onSuccess: (res) => {
-      setLink(res.authorization_url);
-      client.invalidateQueries({ queryKey: key });
-      toast("Paystack link created");
-    },
-    onError: (err) => toast(err.message, "error"),
-  });
-
   function setStatus(status: BookingStatus, message: string) {
     patch.mutate({ status }, { onSuccess: (u) => onSaved(u, message), onError: (e) => toast(e.message, "error") });
   }
@@ -130,7 +118,7 @@ export function BookingDetailScreen() {
 
   const breakdown = (b.price_breakdown as Breakdown) ?? {};
   const shown = breakdown.estimate ?? breakdown;
-  const activeLink = link ?? b.payment_link;
+  const activeLink = b.payment_link;
   const whatsappPayText = activeLink
     ? `Hello ${b.contact_name.split(" ")[0]}, here is your secure Paystack link for Kleandeck booking ${b.reference} (${naira(b.balance_due)}): ${activeLink}`
     : "";
@@ -389,9 +377,6 @@ export function BookingDetailScreen() {
 
             {b.total > 0 && b.balance_due > 0 && b.status !== "cancelled" && (
               <div className="mt-4 space-y-2">
-                <Button variant="accent" className="w-full" loading={paymentLink.isPending} onClick={() => paymentLink.mutate()}>
-                  <Link2 className="size-4" /> {activeLink ? "New Paystack link" : "Create Paystack link"}
-                </Button>
                 <Button
                   className="w-full !bg-white/10 hover:!bg-white/20"
                   onClick={() => {
@@ -401,7 +386,7 @@ export function BookingDetailScreen() {
                 >
                   <ReceiptText className="size-4" /> Record transfer or cash
                 </Button>
-                {!b.email && <p className="text-xs text-white/60">Add the customer&apos;s email to create a Paystack link.</p>}
+                <p className="text-xs text-white/60">Agree payment directly with the customer on WhatsApp.</p>
               </div>
             )}
 

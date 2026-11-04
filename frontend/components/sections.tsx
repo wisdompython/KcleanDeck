@@ -1,7 +1,8 @@
-import { ArrowRight, Check, MessageCircle, RefreshCw, TriangleAlert } from "lucide-react";
+import { Check, RefreshCw, TriangleAlert } from "lucide-react";
 import Link from "next/link";
 
 import { FaqAccordion } from "@/components/faq-accordion";
+import { WhatsAppIcon } from "@/components/icons";
 import { Photo } from "@/components/photo";
 import { btn, card } from "@/components/ui";
 import { naira } from "@/lib/format";
@@ -83,16 +84,14 @@ export function ServiceCard({ service, detailed = false }: { service: Service; d
           <PriceTag service={service} />
           <Link
             href={`/book?service=${service.slug}`}
-            className={`${quoteOnly ? btn.ghost : btn.primary} mt-4 w-full`}
+            className={`${btn.whatsapp} mt-4 w-full`}
           >
             {quoteOnly ? (
               <>
-                <MessageCircle className="size-4" aria-hidden="true" /> Request a quote
+                <WhatsAppIcon className="size-4" aria-hidden="true" /> Request on WhatsApp
               </>
             ) : (
-              <>
-                See your price <ArrowRight className="size-4" aria-hidden="true" />
-              </>
+              <><WhatsAppIcon className="size-4" aria-hidden="true" /> Discuss on WhatsApp</>
             )}
           </Link>
         </div>

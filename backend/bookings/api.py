@@ -109,6 +109,8 @@ class BookingCreate(APIView):
                     booking.deposit_amount = due_now
                 booking.save()
                 payment = paystack.initialize_payment(booking, due_now)
+        except paystack.PaymentsDisabledError as exc:
+            return Response({"detail": str(exc)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
         except paystack.PaystackError as exc:
             logger.warning("Checkout failed: %s", exc)
             return Response(

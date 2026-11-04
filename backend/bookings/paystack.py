@@ -24,6 +24,10 @@ class PaystackError(Exception):
     pass
 
 
+class PaymentsDisabledError(PaystackError):
+    pass
+
+
 def _headers() -> dict:
     if not settings.PAYSTACK_SECRET_KEY:
         raise PaystackError("PAYSTACK_SECRET_KEY is not configured.")
@@ -32,6 +36,10 @@ def _headers() -> dict:
 
 def initialize_payment(booking: Booking, amount: int | None = None) -> Payment:
     """Start a Paystack transaction for `amount` naira (default: the balance due)."""
+    if not settings.ONLINE_PAYMENTS_ENABLED:
+        raise PaymentsDisabledError(
+            "Online payments are temporarily disabled. Please agree the booking details with the customer on WhatsApp."
+        )
     if not booking.email:
         raise PaystackError("Paystack needs the customer's email address. Add it to the booking first.")
     amount = booking.balance_due if amount is None else min(amount, booking.balance_due)

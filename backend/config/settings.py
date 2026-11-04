@@ -160,6 +160,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # admin sign-in lasts a week
 
 # Paystack
 PAYSTACK_SECRET_KEY = os.environ.get("PAYSTACK_SECRET_KEY", "")
+ONLINE_PAYMENTS_ENABLED = env_bool("ONLINE_PAYMENTS_ENABLED", False)
 # Overridable so end-to-end tests can point at a fake Paystack (e2e/fake-paystack).
 PAYSTACK_BASE_URL = os.environ.get("PAYSTACK_BASE_URL", "https://api.paystack.co").rstrip("/")
 

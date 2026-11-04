@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 from django.contrib import admin, messages
 from django.utils import timezone
 from django.utils.html import format_html, format_html_join
@@ -98,6 +99,12 @@ class BookingAdmin(admin.ModelAdmin):
         ),
     ]
     actions = ["create_payment_link", "mark_paid_transfer", "mark_completed", "mark_cancelled"]
+
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if not settings.ONLINE_PAYMENTS_ENABLED:
+            actions.pop("create_payment_link", None)
+        return actions
 
     def save_model(self, request, obj, form, change):
         if not change:

@@ -11,15 +11,14 @@ test("mobile menu navigates the public site", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Clear starting prices for core cleaning services" })).toBeVisible();
 });
 
-test("mobile booking shows the price summary inline", async ({ page }) => {
-  await page.goto("/book?service=standard-cleaning");
-  await page.getByLabel("Area in Lagos").selectOption({ label: "Yaba" });
-  await expect(page.getByTestId("summary-total").filter({ visible: true })).toHaveText(/₦[\d,]+/);
-  await expect(page.getByRole("button", { name: "Continue" })).toBeEnabled();
+test("mobile booking CTA uses the WhatsApp handoff route", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await expect(page.locator("header").getByRole("link", { name: "Book a service" }).last()).toHaveAttribute("href", "/book");
 });
 
 test("the page never scrolls sideways on a phone", async ({ page }) => {
-  for (const path of ["/", "/pricing", "/about", "/book", "/careers"]) {
+  for (const path of ["/", "/pricing", "/about", "/careers"]) {
     await page.goto(path);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow, path).toBeLessThanOrEqual(0);

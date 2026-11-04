@@ -59,7 +59,7 @@ function FooterFrame({
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col gap-2 py-6 pb-24 text-xs text-white/60 sm:flex-row sm:justify-between sm:pb-6">
           <p>© {year} Kleandeck. All rights reserved.</p>
-          <p>Payments secured by Paystack</p>
+          <p>Bookings arranged directly with our team</p>
         </div>
       </div>
     </footer>

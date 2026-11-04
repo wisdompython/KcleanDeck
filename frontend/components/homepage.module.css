@@ -91,8 +91,8 @@
 .serviceBottom strong { font-size: 14px; }
 .serviceCta { display: inline-flex; gap: 6px; align-items: center; min-height: 44px; color: var(--color-primary); font: 700 12px/1.5 var(--font-display); padding-block: 5px; }
 .serviceCta:hover { color: var(--color-on-secondary-container); }
-.serviceFeatured .serviceCta { width: 100%; margin-top: 8px; padding: 16px 20px; justify-content: space-between; background: var(--color-primary); color: white; border-radius: 12px; font-size: 14px; }
-.serviceFeatured .serviceCta:hover { background: var(--color-primary-hover); }
+.serviceFeatured .serviceCta { width: 100%; margin-top: 8px; padding: 16px 20px; justify-content: center; background: var(--color-whatsapp); color: white; border-radius: 12px; font-size: 14px; }
+.serviceFeatured .serviceCta:hover { filter: brightness(.94); }
 .serviceBadge { position: absolute; top: 16px; left: 16px; border-radius: 100px; padding: 6px 10px; background: white; color: var(--color-on-secondary-container); font: 700 9px/1.5 var(--font-display); text-transform: uppercase; letter-spacing: .06em; }
 .serviceInlineBadge { color: var(--color-on-secondary-container); margin-bottom: 6px; font: 700 9px/1.4 var(--font-display); letter-spacing: .08em; text-transform: uppercase; }
 

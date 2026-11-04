@@ -11,14 +11,14 @@ test.describe("Public site", () => {
 
     await expect(page.getByRole("heading", { name: "The service ends with a clearer record." })).toBeVisible();
     await expect(page.getByText("Quality check included")).toBeVisible();
-    await expect(page.locator("ol").filter({ hasText: "Choose & price" }).getByRole("listitem")).toHaveCount(3);
+    await expect(page.locator("ol").filter({ hasText: "Discuss & confirm" }).getByRole("listitem")).toHaveCount(3);
 
     const services = page.locator("#services article");
     await expect(services).toHaveCount(5);
     await expect(services.filter({ hasText: "Standard cleaning" })).toContainText(/From ₦[\d,]+ per visit \+ VAT/);
     await expect(services.filter({ hasText: "Facility support" })).toContainText("Custom quote");
-    await expect(page.getByRole("link", { name: "See your price" })).toHaveCount(4);
-    await expect(page.getByRole("link", { name: "Request a quote" })).toHaveCount(1);
+    await expect(page.getByRole("link", { name: "Discuss on WhatsApp" })).toHaveCount(4);
+    await expect(page.getByRole("link", { name: "Request on WhatsApp" })).toHaveCount(1);
     await expect(page.locator("#faq").getByRole("button").first()).toBeVisible();
   });
 
@@ -84,7 +84,7 @@ test.describe("Public site", () => {
     const table = page.getByRole("table");
     await expect(table.getByRole("row", { name: /Weekly/ })).toContainText("10% off");
     await expect(page.getByText(/7\.5% VAT/)).toBeVisible();
-    await expect(page.getByText("What the calculator covers:")).toBeVisible();
+    await expect(page.getByText("What the starting price covers:")).toBeVisible();
     await expect(page.getByText(/water tanker/)).toBeVisible();
   });
 
@@ -101,8 +101,7 @@ test.describe("Public site", () => {
     const res = await page.goto("/does-not-exist");
     expect(res?.status()).toBe(404);
     await expect(page.getByRole("heading", { name: "We couldn't find that page" })).toBeVisible();
-    await page.getByRole("link", { name: "Book a service" }).last().click();
-    await expect(page).toHaveURL(/\/book$/);
+    await expect(page.getByRole("link", { name: "Book a service" }).last()).toHaveAttribute("href", "/book");
   });
 
   test("admin pages are hidden from search engines", async ({ page }) => {

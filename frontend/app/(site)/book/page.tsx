@@ -1,64 +1,25 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
+import { redirect } from "next/navigation";
 
-import { BookingFlow } from "@/components/booking/booking-flow";
-import { BackendError } from "@/components/sections";
 import { getServices, getSite } from "@/lib/api";
-import { ContentIn, PageTransition, SkeletonOut } from "@/components/transitions";
+import { whatsappLink } from "@/lib/format";
 
 export const metadata: Metadata = {
-  title: "Book a service",
-  description: "Get an instant price for commercial cleaning in Lagos and pay securely with Paystack.",
+  title: "Discuss a service",
+  description: "Discuss your commercial cleaning or facility-support needs with Kleandeck on WhatsApp.",
 };
 
-async function Flow({ searchParams }: { searchParams: PageProps<"/book">["searchParams"] }) {
-  const [params, data] = await Promise.all([
+export default async function BookPage({ searchParams }: PageProps<"/book">) {
+  const [params, site, services] = await Promise.all([
     searchParams,
-    Promise.all([getServices(), getSite()]).catch(() => null),
+    getSite().catch(() => null),
+    getServices().catch(() => []),
   ]);
-  if (!data) return <BackendError />;
-  const [services, site] = data;
-  const initial = services.find((s) => s.slug === params.service)?.slug ?? services[0]?.slug;
+  const requestedSlug = Array.isArray(params.service) ? params.service[0] : params.service;
+  const service = services.find((item) => item.slug === requestedSlug);
+  const message = service
+    ? `Hello Kleandeck, I'd like to discuss booking ${service.name}. Please help me confirm the scope, availability and final price.`
+    : "Hello Kleandeck, I'd like to book a service. Please help me choose the right option and confirm availability and pricing.";
 
-  return (
-    <BookingFlow
-      key={initial}
-      services={services}
-      site={site}
-      initialService={initial}
-      sharedParams={params.service === initial ? params : {}}
-    />
-  );
-}
-
-export default function BookPage(props: PageProps<"/book">) {
-  return (
-    <PageTransition>
-      <div className="bg-surface-container-low">
-        <div className="container-page py-10 md:py-14">
-          <p className="eyebrow">Instant price</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-[-0.02em] md:text-[40px] md:leading-[48px]">
-            Book a commercial clean
-          </h1>
-          <p className="mt-3 max-w-2xl text-on-surface-variant">
-            Tell us about your space to see the full price, including VAT. Pay online to confirm, or send us the details
-            on WhatsApp for a custom quote.
-          </p>
-          <div className="mt-8">
-            <Suspense
-              fallback={
-                <SkeletonOut>
-                  <div className="h-[640px] animate-pulse rounded-3xl bg-white" />
-                </SkeletonOut>
-              }
-            >
-              <ContentIn>
-                <Flow searchParams={props.searchParams} />
-              </ContentIn>
-            </Suspense>
-          </div>
-        </div>
-      </div>
-    </PageTransition>
-  );
+  redirect(whatsappLink(site?.whatsapp_number, message));
 }

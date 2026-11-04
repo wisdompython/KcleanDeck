@@ -40,7 +40,20 @@ async function fillCustomerDetails(page: Page, name: string) {
   await page.getByLabel("Address of the space").fill("12 Adeola Odeku Street, 3rd floor");
 }
 
-test.describe("Booking calculator", () => {
+test("public booking redirects to a service-specific WhatsApp discussion", async ({ page, browser }) => {
+  const admin = await browser.newPage({ storageState: OWNER.storageState });
+  await adminApi(admin, "PATCH", "settings/", { whatsapp_number: "2348099990000" });
+
+  const response = await page.request.get("/book?service=deep-cleaning", { maxRedirects: 0 });
+  expect(response.status()).toBe(307);
+  const destination = new URL(response.headers().location);
+  expect(`${destination.origin}${destination.pathname}`).toBe("https://wa.me/2348099990000");
+  expect(destination.searchParams.get("text")).toContain("Deep cleaning");
+  expect(destination.searchParams.get("text")).toContain("availability and final price");
+  await admin.close();
+});
+
+test.describe.skip("Booking calculator (paused while WhatsApp booking mode is active)", () => {
   test("price responds to rooms, frequency and add-ons", async ({ page }) => {
     await page.goto("/book?service=deep-cleaning");
     await expect(page.getByRole("button", { name: /Deep cleaning/ })).toHaveAttribute("aria-pressed", "true");
@@ -86,7 +99,7 @@ test.describe("Booking calculator", () => {
   });
 });
 
-test.describe("Sharing a price", () => {
+test.describe.skip("Sharing a price (paused while WhatsApp booking mode is active)", () => {
   test("a forwarded link reopens the exact calculation", async ({ page, browser }) => {
     await page.goto("/book?service=deep-cleaning");
     await page.getByRole("button", { name: "More Rooms / work areas" }).click();
@@ -137,7 +150,7 @@ test.describe("Sharing a price", () => {
   });
 });
 
-test.describe("Checkout with Paystack", () => {
+test.describe.skip("Checkout with Paystack (paused while WhatsApp booking mode is active)", () => {
   test("customer pays online and the booking is confirmed", async ({ page, browser }) => {
     const name = unique("Ada Checkout");
     await page.goto("/book?service=standard-cleaning");
@@ -207,7 +220,7 @@ test.describe("Checkout with Paystack", () => {
   });
 });
 
-test.describe("WhatsApp quote requests", () => {
+test.describe.skip("WhatsApp quote requests from the legacy form", () => {
   test("custom-quote service saves the request and opens WhatsApp prefilled", async ({ page, browser }) => {
     const admin = await browser.newPage({ storageState: OWNER.storageState });
     await adminApi(admin, "PATCH", "settings/", { whatsapp_number: "2348099990000" });

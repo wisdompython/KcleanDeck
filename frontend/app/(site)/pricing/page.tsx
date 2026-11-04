@@ -42,7 +42,7 @@ async function PricingGrid() {
                 <tr className="border-b border-surface-container-high">
                   <th className="py-2 font-medium">Frequency</th>
                   <th className="py-2 font-medium">Discount</th>
-                  <th className="py-2 font-medium">Billed</th>
+                  <th className="py-2 font-medium">Schedule</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,7 +53,7 @@ async function PricingGrid() {
                       {Number(f.discount_percent) ? `${Number(f.discount_percent)}% off` : "—"}
                     </td>
                     <td className="py-3 text-on-surface-variant">
-                      {f.visits_per_payment > 1 ? `${f.visits_per_payment} visits per payment` : "Per visit"}
+                      {f.visits_per_payment > 1 ? `${f.visits_per_payment} visits per cycle` : "Per visit"}
                     </td>
                   </tr>
                 ))}
@@ -76,11 +76,11 @@ async function PricingGrid() {
               such as a water tanker, are confirmed separately before the job.
             </li>
             <li>
-              <strong className="text-on-surface">Location:</strong> any applicable travel charge is shown before you pay.
+              <strong className="text-on-surface">Location:</strong> any applicable travel charge is confirmed before you schedule.
             </li>
             <li>
               <strong className="text-on-surface">VAT:</strong> {site.vat_enabled ? `${vatLabel(site.vat_rate)} VAT` : "VAT"}{" "}
-              is added to every booking and shown separately.
+              is added to every booking and shown separately in the confirmed price.
             </li>
           </ul>
         </div>
@@ -108,12 +108,12 @@ export default function PricingPage() {
         <SectionHeading
           eyebrow="Pricing"
           title="Clear starting prices for core cleaning services"
-          body="Use the calculator for a core-service estimate, including VAT. Your final price can change when you request extras or when the site needs additional equipment, access support or utilities. We confirm those costs before work begins."
+          body="Review the starting prices for our core services, then continue on WhatsApp so we can confirm your scope, availability and final price before work begins."
         />
         <div className="mt-8 rounded-2xl border border-secondary bg-secondary-container/50 p-5 text-sm leading-6 text-on-surface-variant">
-          <strong className="text-on-surface">What the calculator covers:</strong> the selected standard, deep or
-          post-construction cleaning service. Add-ons and site-specific requirements are scoped separately so you can approve
-          the final amount before the team is assigned.
+          <strong className="text-on-surface">What the starting price covers:</strong> the selected standard, deep or
+          post-construction cleaning service. Add-ons and site-specific requirements are scoped separately on WhatsApp so you
+          can approve the final amount before the team is assigned.
         </div>
         <div className="mt-10">
           <Suspense
@@ -132,8 +132,8 @@ export default function PricingPage() {
           <div className="max-w-2xl">
             <h2 className="text-2xl font-bold text-white">Large site or something different?</h2>
             <p className="mt-2 text-white/70">
-              Large post-construction jobs, facility staffing and anything that doesn&apos;t fit the calculator are quoted
-              on WhatsApp. Once we agree a price, we send you a secure Paystack payment link.
+              Large post-construction jobs, facility staffing and anything outside the core service scope are discussed and
+              quoted directly on WhatsApp.
             </p>
           </div>
           <Suspense fallback={null}>

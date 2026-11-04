@@ -21,6 +21,7 @@ import { Suspense } from "react";
 
 import { CleaningReveal } from "@/components/cleaning-reveal";
 import styles from "@/components/homepage.module.css";
+import { WhatsAppIcon } from "@/components/icons";
 import { Photo } from "@/components/photo";
 import { BackendError, FaqList, PriceTag, ServiceGridSkeleton } from "@/components/sections";
 import { ContentIn, PageTransition, SkeletonOut } from "@/components/transitions";
@@ -51,7 +52,7 @@ const audiences = [
     title: "Offices needing a reset",
     body: "Standard cleaning or a deeper weekend reset that gets meeting rooms, work areas and restrooms ready for Monday.",
     link: "/book?service=deep-cleaning",
-    cta: "Book an office clean",
+    cta: "Discuss an office clean",
     image: "/images/use-cases/offices.jpg",
   },
   {
@@ -97,8 +98,8 @@ async function Services() {
             <div className={styles.serviceBottom}>
               <PriceTag service={service} />
               <Link href={`/book?service=${service.slug}`} className={styles.serviceCta}>
-                {service.pricing_method === "quote" ? "Request a quote" : "See your price"}
-                <ArrowUpRight size={17} aria-hidden="true" />
+                <WhatsAppIcon className="size-4" aria-hidden="true" />
+                {service.pricing_method === "quote" ? "Request on WhatsApp" : "Discuss on WhatsApp"}
               </Link>
             </div>
           </div>
@@ -215,7 +216,7 @@ export default function HomePage() {
           <div className="container-page">
             <div className={styles.sectionIntro}>
               <div><p className={styles.kicker}>From booking to handover</p><h2 className={styles.sectionTitle} id="steps-title">A clear journey.<br /><em>No hidden steps.</em></h2></div>
-              <p className={styles.sectionCopy}>Three clear stages take you from choosing the service to a quality-checked handover.</p>
+              <p className={styles.sectionCopy}>Three clear stages take you from the first WhatsApp conversation to a quality-checked handover.</p>
             </div>
             <ol className={styles.steps}>{steps.map((step, index) => <li key={step.title} className={styles.step}><span className={styles.stepNumber} aria-hidden="true">0{index + 1}</span><h3 className={styles.stepTitle}>{step.title}</h3><p className={styles.stepBody}>{step.body}</p></li>)}</ol>
           </div>

@@ -214,7 +214,7 @@ The design system uses a deliberate, rounded geometry (level 2) that softens cor
 - **Primary Action:** Deep Oceanic Navy (`#0A2540`) background with Crisp White text. Fully rounded pill (`rounded-full`) or `rounded-xl`, `h-12`, medium weight Instrument Sans text. Subtle hover state shifting to Navy-800 (`#071C33`) with a crisp micro-lift (`translate-y-[-1px]`).
 - **Accent Action:** Emerald Green (`#0E9F6E`) background with Crisp White text. Reserved for primary conversion flows ("Book Deep Clean", "Instant Inspection").
 - **Secondary / Ghost:** Transparent background with `1px` border in `#E2E8F0`, slate-900 text, shifting to frost-white background (`#F8FAFC`) on hover.
-- **Global CTA hierarchy (meeting decision, 23 Oct 2026 at 00:40:29; wording refined 4 Nov 2026):** "Book a service" is the only persistent primary action in the header. It covers both cleaning and facility-support bookings without awkward phrasing. Do not place a full "Chat on WhatsApp" button beside it. WhatsApp remains available as the circular floating contact control and may appear contextually where conversation is required, such as a custom-quote state.
+- **Global CTA hierarchy (meeting decision, 23 Oct 2026 at 00:40:29; booking mode updated 4 Nov 2026):** "Book a service" remains the persistent primary action in the header. While public checkout is paused, it opens a prefilled WhatsApp discussion covering service choice, availability, scope and price. Do not place a second full WhatsApp button beside it; the floating contact control remains available for general enquiries.
 
 ### Badges & Status Chips
 - Height `28px`, pill-shaped (`rounded-full`), padded `px-3.5`.
@@ -238,7 +238,7 @@ The design system uses a deliberate, rounded geometry (level 2) that softens cor
 - This pattern explains the existing service process. It must not be represented as a paid add-on or separate service.
 
 ### Booking Journey
-- Summarize the public journey in three customer-facing stages: `Choose & price`, `Confirm & pay`, and `Team & handover`.
+- Summarize the public journey in three customer-facing stages: `Choose a service`, `Discuss & confirm`, and `Team & handover` while public checkout is paused.
 - Use three equal cards on desktop and a single vertical stack on mobile. Avoid exposing internal operational steps as separate journey cards unless the customer must act on them.
 
 ### Form Inputs & Selectors
