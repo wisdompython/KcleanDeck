@@ -4,7 +4,7 @@
 #   ./deploy.sh
 #
 # Pulls the current branch, rebuilds and restarts the containers, waits until
-# they're healthy, and creates a first admin (owner) account if none exists.
+# they're healthy, and creates or promotes a first admin account if none exists.
 # Override the first admin's details with env vars, e.g.
 #   ADMIN_EMAIL=me@example.com ADMIN_PASSWORD='long-password' ./deploy.sh
 # Without ADMIN_PASSWORD a random one is generated and printed once.
@@ -43,10 +43,20 @@ else
     backend python manage.py shell -c "
 import os
 from django.contrib.auth import get_user_model
-get_user_model().objects.create_superuser(
-    os.environ['ADMIN_USERNAME'], os.environ['ADMIN_EMAIL'], os.environ['ADMIN_PASSWORD']
-)"
-  echo "    Created admin account:"
+User = get_user_model()
+username = os.environ['ADMIN_USERNAME']
+user, created = User.objects.get_or_create(
+    username=username,
+    defaults={'email': os.environ['ADMIN_EMAIL']},
+)
+user.email = os.environ['ADMIN_EMAIL']
+user.is_active = True
+user.is_staff = True
+user.is_superuser = True
+user.set_password(os.environ['ADMIN_PASSWORD'])
+user.save(update_fields=['email', 'is_active', 'is_staff', 'is_superuser', 'password'])
+"
+  echo "    Admin account created or promoted:"
   echo "      email:    $ADMIN_EMAIL"
   if [ -n "$generated" ]; then
     echo "      password: $ADMIN_PASSWORD"
