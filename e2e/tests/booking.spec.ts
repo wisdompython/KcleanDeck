@@ -40,8 +40,14 @@ async function fillCustomerDetails(page: Page, name: string) {
   await page.getByLabel("Address of the space").fill("12 Adeola Odeku Street, 3rd floor");
 }
 
-test("public booking redirects to a service-specific WhatsApp discussion", async ({ page, browser }) => {
+test("public booking redirects to a service-specific WhatsApp discussion with a demo fallback", async ({ page, browser }) => {
   const admin = await browser.newPage({ storageState: OWNER.storageState });
+  await adminApi(admin, "PATCH", "settings/", { whatsapp_number: "" });
+
+  const fallback = await page.request.get("/book?service=deep-cleaning", { maxRedirects: 0 });
+  expect(fallback.status()).toBe(307);
+  expect(new URL(fallback.headers().location).pathname).toBe("/2348012345678");
+
   await adminApi(admin, "PATCH", "settings/", { whatsapp_number: "2348099990000" });
 
   const response = await page.request.get("/book?service=deep-cleaning", { maxRedirects: 0 });
