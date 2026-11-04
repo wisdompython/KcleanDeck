@@ -4,10 +4,12 @@ import {
   BriefcaseBusiness,
   Building2,
   Camera,
+  CheckCircle2,
   ClipboardCheck,
   CreditCard,
   Dumbbell,
   FileCheck2,
+  KeyRound,
   Paintbrush,
   Receipt,
   ShieldCheck,
@@ -34,6 +36,7 @@ const audiences = [
     body: "A dependable post-construction and handover clean after installation, so the finished space is ready to reveal.",
     link: "/book?service=post-construction-cleaning",
     cta: "Plan a project clean",
+    image: "/images/use-cases/interior-decor.jpg",
   },
   {
     icon: Dumbbell,
@@ -41,6 +44,7 @@ const audiences = [
     body: "Consistent cleaning and facility support for high-traffic spaces, with routines shaped around operating hours.",
     link: "/book",
     cta: "Discuss your schedule",
+    image: "/images/services/deep.jpg",
   },
   {
     icon: Building2,
@@ -48,6 +52,7 @@ const audiences = [
     body: "Standard cleaning or a deeper weekend reset that gets meeting rooms, work areas and restrooms ready for Monday.",
     link: "/book?service=deep-cleaning",
     cta: "Book an office clean",
+    image: "/images/use-cases/offices.jpg",
   },
   {
     icon: BriefcaseBusiness,
@@ -55,7 +60,15 @@ const audiences = [
     body: "One capable facilities assistant for cleaning, pantry care and practical office support—without building a large operations team.",
     link: "/book?service=facility-support",
     cta: "Explore office support",
+    image: "/images/services/facility.jpg",
   },
+] as const;
+
+const handoverChecks = [
+  "Arrival and access details noted",
+  "Required areas checked after service",
+  "After-service photos reviewed",
+  "Preferences saved for the next visit",
 ] as const;
 
 const reasons = [
@@ -114,12 +127,15 @@ export default function HomePage() {
               <p className={styles.sectionCopy}>One-time projects, weekend resets and ongoing operational support—shaped around your space, schedule and handover needs.</p>
             </div>
             <div className={styles.audiences}>
-              {audiences.map(({ icon: Icon, title, body, link, cta }) => (
+              {audiences.map(({ icon: Icon, title, body, link, cta, image }) => (
                 <article key={title} className={styles.audienceCard}>
-                  <span className={styles.audienceIcon}><Icon size={22} strokeWidth={1.6} aria-hidden="true" /></span>
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                  <Link href={link}>{cta} <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                  <Photo src={image} alt="" sizes="(min-width: 1100px) 50vw, (min-width: 768px) 50vw, 100vw" />
+                  <div className={styles.audienceContent}>
+                    <span className={styles.audienceIcon}><Icon size={20} strokeWidth={1.7} aria-hidden="true" /></span>
+                    <h3>{title}</h3>
+                    <p>{body}</p>
+                    <Link href={link}>{cta} <ArrowUpRight size={16} aria-hidden="true" /></Link>
+                  </div>
                 </article>
               ))}
             </div>
@@ -154,6 +170,37 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className={`${styles.section} ${styles.proofSection}`} aria-labelledby="proof-title">
+          <div className={`container-page ${styles.proofGrid}`}>
+            <div className={styles.proofCopy}>
+              <p className={styles.kicker}>Proof of clean</p>
+              <h2 className={styles.sectionTitle} id="proof-title">The service ends with<br /><em>a clearer record.</em></h2>
+              <p>Quality control is part of the service. We note the space before work, review completed areas and keep the practical details that make the next visit more consistent.</p>
+              <Link href="/book" className={btn.primary}>Book a service <ArrowRight size={17} aria-hidden="true" /></Link>
+            </div>
+            <div className={styles.handoverCard} aria-label="Example of the details captured in a Kleandeck handover record">
+              <div className={styles.handoverHeader}>
+                <div><span>Example handover view</span><h3>Your service record</h3></div>
+                <span className={styles.handoverStatus}><CheckCircle2 size={15} aria-hidden="true" /> Quality check included</span>
+              </div>
+              <div className={styles.handoverPhotos}>
+                <figure className={styles.handoverPhoto}>
+                  <Photo src="/images/cleaning-before.webp" alt="" sizes="(min-width: 768px) 300px, 45vw" />
+                  <figcaption>Arrival context</figcaption>
+                </figure>
+                <figure className={styles.handoverPhoto}>
+                  <Photo src="/images/use-cases/real-estate.jpg" alt="" sizes="(min-width: 768px) 300px, 45vw" />
+                  <figcaption>Completed areas</figcaption>
+                </figure>
+              </div>
+              <div className={styles.handoverChecklist}>
+                {handoverChecks.map((item) => <div key={item}><CheckCircle2 size={16} aria-hidden="true" /><span>{item}</span></div>)}
+              </div>
+              <div className={styles.handoverFooter}><KeyRound size={18} aria-hidden="true" /><div><strong>Handover details recorded</strong><span>Access notes and agreed preferences stay with the service history.</span></div></div>
+            </div>
+          </div>
+        </section>
+
         <section id="services" className={`${styles.section} ${styles.serviceSection}`} aria-labelledby="services-title">
           <div className="container-page">
             <div className={styles.sectionIntro}>
@@ -168,7 +215,7 @@ export default function HomePage() {
           <div className="container-page">
             <div className={styles.sectionIntro}>
               <div><p className={styles.kicker}>From booking to handover</p><h2 className={styles.sectionTitle} id="steps-title">A clear journey.<br /><em>No hidden steps.</em></h2></div>
-              <p className={styles.sectionCopy}>Choose the service, review pricing and terms, pay securely, meet your team and receive a quality-checked handover.</p>
+              <p className={styles.sectionCopy}>Three clear stages take you from choosing the service to a quality-checked handover.</p>
             </div>
             <ol className={styles.steps}>{steps.map((step, index) => <li key={step.title} className={styles.step}><span className={styles.stepNumber} aria-hidden="true">0{index + 1}</span><h3 className={styles.stepTitle}>{step.title}</h3><p className={styles.stepBody}>{step.body}</p></li>)}</ol>
           </div>
@@ -177,7 +224,7 @@ export default function HomePage() {
         <section className={`${styles.section} ${styles.promise}`} aria-labelledby="promise-title">
           <div className={`container-page ${styles.promiseGrid}`}>
             <div className={styles.promisePhoto}>
-              <Photo src="/images/services/standard.jpg" alt="A Kleandeck team carefully cleaning a meeting room" sizes="(min-width: 1280px) 900px, (min-width: 768px) 70vw, 150vw" />
+              <Photo src="/images/services/facility.jpg" alt="A Kleandeck facilities assistant caring for a shared office kitchen" sizes="(min-width: 1280px) 900px, (min-width: 768px) 70vw, 150vw" />
               <div className={styles.photoNote}><span>2</span><p>weeks of professional training.<br />Vetted for greater peace of mind.</p></div>
             </div>
             <div>

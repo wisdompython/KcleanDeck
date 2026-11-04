@@ -9,6 +9,10 @@ test.describe("Public site", () => {
       await expect(page.getByRole("heading", { name: audience })).toBeVisible();
     }
 
+    await expect(page.getByRole("heading", { name: "The service ends with a clearer record." })).toBeVisible();
+    await expect(page.getByText("Quality check included")).toBeVisible();
+    await expect(page.locator("ol").filter({ hasText: "Choose & price" }).getByRole("listitem")).toHaveCount(3);
+
     const services = page.locator("#services article");
     await expect(services).toHaveCount(5);
     await expect(services.filter({ hasText: "Standard cleaning" })).toContainText(/From ₦[\d,]+ per visit \+ VAT/);

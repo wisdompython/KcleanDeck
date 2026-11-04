@@ -227,6 +227,20 @@ The design system uses a deliberate, rounded geometry (level 2) that softens cor
 - Internal padding using `space-lg` (24px) for mobile and `space-xl` (40px) for desktop presentation.
 - Interactive cards feature a smooth border transition to Cyan (`#00C3F8`) and a delicate upward shadow translation upon hover.
 
+### Audience Image Bento
+- The homepage audience module uses a 12-column, asymmetric `7/5` then `5/7` editorial grid. Each card is image-led, with a navy lower gradient ensuring accessible white copy over photography.
+- Images should show the setting and work context, not decorative stock abstractions. Keep the supporting copy short enough to remain readable over the photograph and preserve one obvious contextual action per card.
+- On mobile, collapse to one card per row with a minimum height of `330px`; retain the image, icon, title, short description and action rather than turning the cards back into generic text tiles.
+
+### Proof of Clean / Handover Record
+- Treat quality control as a visible product feature. The signature handover module pairs a concise benefit statement with a white operational-record card on an emerald-tinted field.
+- The record card may show arrival context, completed areas, completion checks, access notes and preferences. When sample imagery is used, label the module as an example; never imply that illustrative or generated imagery is a client case study.
+- This pattern explains the existing service process. It must not be represented as a paid add-on or separate service.
+
+### Booking Journey
+- Summarize the public journey in three customer-facing stages: `Choose & price`, `Confirm & pay`, and `Team & handover`.
+- Use three equal cards on desktop and a single vertical stack on mobile. Avoid exposing internal operational steps as separate journey cards unless the customer must act on them.
+
 ### Form Inputs & Selectors
 - Height `48px`, `rounded-xl` geometry, background `#FFFFFF` bordered by `#CBD5E1`.
 - Font: Inter 15px.
